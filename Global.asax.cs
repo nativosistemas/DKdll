@@ -11,6 +11,10 @@ namespace DKdll
     {
         protected void Application_Start(object sender, EventArgs e)
         {
+            DKbase.Helper.getConnectionStringSQL = "";
+            DKbase.Helper.getPathSiteWeb = @"C:\LogTiempoWebService\";
+            DKbase.Helper.getFolderLog = "Log";
+            DKbase.Helper.getTipoApp = "DLL";
         }
     }
 }
