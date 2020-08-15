@@ -375,22 +375,31 @@ namespace DKdll
         //{
         //    object varR = ObtenerFactura("A001303461593", "RUBENE");
         //}
-        [WebMethod]
-        public String ObtenerFactura_Prueba()
-        {
-            DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), new Exception(), DateTime.Now, "fdsfs", "fdsfdsfdsdsf");
-            cFactura varR = ObtenerFactura("A001309098849", "romanello");
-            return varR.Numero;
-        }
+        //[WebMethod]
+        //public String ObtenerFactura_Prueba()
+        //{
+        //    //DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), new Exception(), DateTime.Now, "fdsfs", "fdsfdsfdsdsf");
+        //    cFactura resultado = ObtenerFactura("A001309098849", "romanello");
+        //    //cFactura resultado = null;
+        //    //dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+        //    //dkInterfaceWeb.Factura objFactura = objServWeb.ObtenerFactura("A001309098849", "romanello");
+        //    //if (objFactura != null)
+        //    //{
+        //    //    resultado = dllFuncionesGenerales.ConvertToFactura(objFactura);
+        //    //    resultado.lista = ObtenerDetalleFactura("A001309098849");
+        //    //}
+        //    return resultado == null?"null":resultado.Numero;
+        //}
         [WebMethod]
         public cFactura ObtenerFactura(string pNumeroFactura, string pLoginWeb)
         {
             cFactura resultado = null;
-            //if (VerificarPermisos(CredencialAutenticacion))
+            if (VerificarPermisos(CredencialAutenticacion))
             {
                 classTiempo tiempo = new classTiempo("ObtenerFactura");
                 try
                 {
+                    var fdfd = 3 / Convert.ToInt16("0");
                     dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
                     dkInterfaceWeb.Factura objFactura = objServWeb.ObtenerFactura(pNumeroFactura, pLoginWeb);
                     if (objFactura != null)
@@ -874,14 +883,14 @@ namespace DKdll
             }
             return resultado;
         }
-        //[WebMethod]
-        //public void ObtenerSaldosPresentacionParaComposicion_Prueba()
-        //{
-        //    string pLoginWeb = "aquiles08";
-        //    DateTime pFecha = new DateTime(2018, 05, 08);
-        //    var dfff = cBaseDatos.RecuperarClienteAdministradorPorIdUsuarios(35);
-        //    cDllSaldosComposicion fff = ObtenerSaldosPresentacionParaComposicion(pLoginWeb, pFecha);
-        //}
+        [WebMethod]
+        public void ObtenerSaldosPresentacionParaComposicion_Prueba()
+        {
+            string pLoginWeb = "romanello";
+            DateTime pFecha = new DateTime(2020, 08, 12);
+            // var dfff = cBaseDatos.RecuperarClienteAdministradorPorIdUsuarios(35);
+            cDllSaldosComposicion fff = ObtenerSaldosPresentacionParaComposicion(pLoginWeb, pFecha);
+        }
         [WebMethod]
         public cDllSaldosComposicion ObtenerSaldosPresentacionParaComposicion(string pLoginWeb, DateTime pFecha)
         {

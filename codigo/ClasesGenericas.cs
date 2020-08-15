@@ -120,39 +120,46 @@ namespace DKdll.codigo
         Stopwatch stopWatch = new Stopwatch();
         string nombre = string.Empty;
         DateTime FechaActual;
+        bool isGrabar = false;
         public classTiempo(string NombreFuncion)
         {
-            nombre = NombreFuncion;
-            FechaActual = DateTime.Now;
-            stopWatch.Start();
+            if (isGrabar)
+            {
+                nombre = NombreFuncion;
+                FechaActual = DateTime.Now;
+                stopWatch.Start();
+            }
         }
         public void Parar()
         {
-            try
+            if (isGrabar)
             {
-                stopWatch.Stop();
-                TimeSpan ts = stopWatch.Elapsed;
-                string path = @"c:/" + @"LogTiempoWebService" + @"/";
-                if (Directory.Exists(path) == false)
+                try
                 {
-                    Directory.CreateDirectory(path);
+                    stopWatch.Stop();
+                    TimeSpan ts = stopWatch.Elapsed;
+                    string path = @"c:/" + @"LogTiempoWebService" + @"/";
+                    if (Directory.Exists(path) == false)
+                    {
+                        Directory.CreateDirectory(path);
+                    }
+                    string nombreArchivo = "tiempo.txt";
+                    string FechaToString = FechaActual.Year.ToString("0000") + "_" + FechaActual.Month.ToString("00") + "_" + FechaActual.Day.ToString("00") + "_h_" + FechaActual.Hour.ToString("00") + "_" + FechaActual.Minute.ToString("00") + "_" + FechaActual.Second.ToString("00") + "_" + FechaActual.Millisecond.ToString("000");
+                    string FilePath = path + nombreArchivo;
+                    StreamWriter sw = null;
+                    if (!File.Exists(FilePath))
+                    {
+                        sw = File.CreateText(FilePath);
+                    }
+                    else
+                    {
+                        sw = File.AppendText(FilePath);
+                    }
+                    sw.WriteLine("Fecha: " + FechaToString + " // Nombre: " + nombre + " // tiempo: " + ts.ToString());
+                    sw.Close();
                 }
-                string nombreArchivo = "tiempo.txt";
-                string FechaToString = FechaActual.Year.ToString("0000") + "_" + FechaActual.Month.ToString("00") + "_" + FechaActual.Day.ToString("00") + "_h_" + FechaActual.Hour.ToString("00") + "_" + FechaActual.Minute.ToString("00") + "_" + FechaActual.Second.ToString("00") + "_" + FechaActual.Millisecond.ToString("000");
-                string FilePath = path + nombreArchivo;
-                StreamWriter sw = null;
-                if (!File.Exists(FilePath))
-                {
-                    sw = File.CreateText(FilePath);
-                }
-                else
-                {
-                    sw = File.AppendText(FilePath);
-                }
-                sw.WriteLine("Fecha: " + FechaToString + " // Nombre: " + nombre + " // tiempo: " + ts.ToString());
-                sw.Close();
+                catch { }
             }
-            catch { }
         }
     }
     public static class dllFuncionesGenerales
