@@ -399,7 +399,6 @@ namespace DKdll
                 classTiempo tiempo = new classTiempo("ObtenerFactura");
                 try
                 {
-                    var fdfd = 3 / Convert.ToInt16("0");
                     dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
                     dkInterfaceWeb.Factura objFactura = objServWeb.ObtenerFactura(pNumeroFactura, pLoginWeb);
                     if (objFactura != null)
