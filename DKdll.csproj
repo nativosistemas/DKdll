@@ -103,26 +103,29 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
+  <ItemGroup>
     <COMReference Include="dkInterfaceWeb">
-      <Guid>{A0CF0550-54F6-4C94-8126-52361574ACD5}</Guid>
+      <Guid>{13452D1C-E7F7-4EB0-BD56-AC4AD47836B7}</Guid>
       <VersionMajor>1</VersionMajor>
-      <VersionMinor>2</VersionMinor>
+      <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
     <COMReference Include="dkObjetos">
-      <Guid>{1494EA9C-B5DD-4E01-AD10-FE53C99190D1}</Guid>
+      <Guid>{F5AE8824-99DB-4CF1-8483-140E1771FB8A}</Guid>
       <VersionMajor>1</VersionMajor>
-      <VersionMinor>10</VersionMinor>
+      <VersionMinor>1</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
     <COMReference Include="dkUTArbolDeBusqueda">
-      <Guid>{4BBECCE7-5941-4AFF-94C3-F3F07D89D42B}</Guid>
+      <Guid>{DA555216-CE9A-49D1-8100-08455CA73CCD}</Guid>
       <VersionMajor>1</VersionMajor>
       <VersionMinor>0</VersionMinor>
       <Lcid>0</Lcid>

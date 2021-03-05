@@ -1871,7 +1871,6 @@ namespace DKdll
                     tiempo.Parar();
                 }
             }
-            return false;
         }
 
         [WebMethod]
@@ -1947,6 +1946,226 @@ namespace DKdll
                 DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NumeroComprobante, FechaVencimiento);
             }
             //}
+            return resultado;
+        }
+        [WebMethod]
+        public string AgregarReclamoFacturadoNoEnviado(List<cDevolucionItemPrecarga> colSDC, string LoginWeb)
+        {
+            string resultado = null;
+            if (VerificarPermisos(CredencialAutenticacion))
+            {
+                classTiempo tiempo = new classTiempo("AgregarReclamoFacturadoNoEnviado");
+                try
+                {
+                    dkInterfaceWeb.SolicitudDevClienteCOL colInput;
+                    colInput = new dkInterfaceWeb.SolicitudDevClienteCOL();
+                    if (colSDC != null)
+                        for (int i = 0; i < colSDC.Count(); i++)
+                            colInput.Add(dllFuncionesGenerales.ConvertFromItemSolicitudDevCliente(colSDC[i]));
+                    else
+                        return null;
+
+                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                    resultado = objServWeb.AgregarReclamoFacturadoNoEnviadoDesdeLaWeb(colInput, LoginWeb);
+                }
+                catch (Exception ex)
+                {
+                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, colSDC,LoginWeb);
+                    return null;
+                }
+                finally
+                {
+                    tiempo.Parar();
+                }
+            }
+            return resultado;
+        }
+
+        [WebMethod]
+        public List<cDevolucionItemPrecarga> ObtenerReclamosFacturadoNoEnviadoPorCliente(string LoginWeb)
+        {
+            List<cDevolucionItemPrecarga> lista = null;
+            if (VerificarPermisos(CredencialAutenticacion))
+            {
+                classTiempo tiempo = new classTiempo("ObtenerReclamosFacturadoNoEnviadoPorCliente");
+                try
+                {
+
+                    lista = new List<cDevolucionItemPrecarga>();
+                    dkInterfaceWeb.SolicitudDevClienteCOL objResultado;
+                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                    objResultado = objServWeb.ObtenerReclamosFacturadoNoEnviadoPorCliente(LoginWeb);
+                    if (objResultado != null)
+                        for (int i = 1; i <= objResultado.Count(); i++)
+                            lista.Add(dllFuncionesGenerales.ConvertToItemSolicitudDevCliente(objResultado[i]));
+                    else
+                        return null;
+                }
+                catch (Exception ex)
+                {
+                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, LoginWeb);
+                    return null;
+                }
+                finally
+                {
+                    tiempo.Parar();
+                }
+            }
+            return lista;
+        }
+
+        [WebMethod]
+        public List<cDevolucionItemPrecarga> ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero(string NumeroReclamo, string LoginWeb)
+        {
+            List<cDevolucionItemPrecarga> lista = null;
+            if (VerificarPermisos(CredencialAutenticacion))
+            {
+                classTiempo tiempo = new classTiempo("ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero");
+                try
+                {
+                    lista = new List<cDevolucionItemPrecarga>();
+                    dkInterfaceWeb.SolicitudDevClienteCOL objResultado;
+                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                    objResultado = objServWeb.ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero(NumeroReclamo, LoginWeb);
+                    if (objResultado != null)
+                        for (int i = 1; i <= objResultado.Count(); i++)
+                            lista.Add(dllFuncionesGenerales.ConvertToItemSolicitudDevCliente(objResultado[i]));
+                    else
+                        return null;
+                }
+                catch (Exception ex)
+                {
+                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NumeroReclamo, LoginWeb);
+                    return null;
+                }
+                finally
+                {
+                    tiempo.Parar();
+                }
+            }
+            return lista;
+        }
+
+    [WebMethod]
+        public List<cCtaCteMovimiento> ObtenerAplicacionesDeComprobantesPorTipoYNumero(string TipoComprobante, string NumeroComprobante, string pLoginWeb)
+        {
+            List<cCtaCteMovimiento> resultado = null;
+            if (VerificarPermisos(CredencialAutenticacion))
+            {
+                classTiempo tiempo = new classTiempo("ObtenerAplicacionesDeComprobantesPorTipoYNumero");
+                try
+                {
+                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                    dkInterfaceWeb.CtaCteMovimientoCOL objAplicaciones = objServWeb.ObtenerAplicacionesPorTipoYNumeroDeComprobante(TipoComprobante, NumeroComprobante, pLoginWeb);
+                    if (objAplicaciones != null)
+                    {
+                        resultado = new List<cCtaCteMovimiento>();
+                        if (objAplicaciones.Count() > 0)
+                        {
+                            DateTime dateValue;
+                            for (int i = 1; i <= objAplicaciones.Count(); i++)
+                            {
+                                cCtaCteMovimiento obj = new cCtaCteMovimiento();
+                                dkInterfaceWeb.CtaCteMovimiento objItem = objAplicaciones[i];
+                                obj.Atraso = objItem.Atraso != null ? objItem.Atraso.ToString() : "";
+                                obj.Fecha = DateTime.TryParse(objItem.Fecha.ToString(), out dateValue) ? (DateTime)objItem.Fecha : (DateTime?)null;
+                                obj.FechaToString = obj.Fecha != null ? ((DateTime)obj.Fecha).ToShortDateString() : "";
+                                obj.FechaPago = DateTime.TryParse(objItem.FechaPago.ToString(), out dateValue) ? (DateTime)objItem.FechaPago : (DateTime?)null;
+                                obj.FechaPagoToString = obj.FechaPago != null ? ((DateTime)obj.FechaPago).ToShortDateString() : "";
+                                obj.FechaVencimiento = DateTime.TryParse(objItem.FechaVencimiento.ToString(), out dateValue) ? (DateTime)objItem.FechaVencimiento : (DateTime?)null;
+                                obj.FechaVencimientoToString = obj.FechaVencimiento != null ? ((DateTime)obj.FechaVencimiento).ToShortDateString() : "";
+                                obj.Importe = objItem.Importe;
+                                obj.MedioPago = objItem.MedioPago != null ? objItem.MedioPago.ToString() : "";
+                                obj.NumeroComprobante = objItem.NumeroComprobante != null ? objItem.NumeroComprobante.ToString() : "";
+                                obj.NumeroRecibo = objItem.NumeroRecibo != null ? objItem.NumeroRecibo.ToString() : "";
+                                obj.Pago = objItem.Pago != null ? objItem.Pago.ToString() : ""; ;
+                                obj.Saldo = objItem.Saldo;
+                                obj.Semana = objItem.Semana != null ? objItem.Semana.ToString() : "";
+                                obj.TipoComprobante = dllFuncionesGenerales.ToConvert(objItem.TipoComprobante);
+                                obj.TipoComprobanteToString = dllFuncionesGenerales.ToConvertToString(objItem.TipoComprobante);
+
+                                resultado.Add(obj);
+                            }
+                        }
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, TipoComprobante, NumeroComprobante, pLoginWeb);
+                    return null;
+                }
+                finally
+                {
+                    tiempo.Parar();
+                }
+            }
+            return resultado;
+        }
+        [WebMethod]
+        public cCtaCteMovimiento ObtenerMovimientoPorTipoYNumeroDeComprobante(string TipoComprobante, string NumeroComprobante, string pLoginWeb)
+        {
+            cCtaCteMovimiento resultado = null;
+            if (VerificarPermisos(CredencialAutenticacion))
+            {
+                classTiempo tiempo = new classTiempo("ObtenerMovimientoPorTipoYNumeroDeComprobante");
+                try
+                {
+                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                    dkInterfaceWeb.CtaCteMovimiento objMovimiento = objServWeb.ObtenerMovimientoPorTipoYNumeroDeComprobante(TipoComprobante, NumeroComprobante, pLoginWeb);
+                    if (objMovimiento != null)
+                    {
+                        DateTime dateValue;
+                        resultado = new cCtaCteMovimiento();
+                        dkInterfaceWeb.CtaCteMovimiento objItem = objMovimiento;
+                        resultado.Atraso = objItem.Atraso != null ? objItem.Atraso.ToString() : "";
+                        resultado.Fecha = DateTime.TryParse(objItem.Fecha.ToString(), out dateValue) ? (DateTime)objItem.Fecha : (DateTime?)null;
+                        resultado.FechaToString = resultado.Fecha != null ? ((DateTime)resultado.Fecha).ToShortDateString() : "";
+                        resultado.FechaPago = DateTime.TryParse(objItem.FechaPago.ToString(), out dateValue) ? (DateTime)objItem.FechaPago : (DateTime?)null;
+                        resultado.FechaPagoToString = resultado.FechaPago != null ? ((DateTime)resultado.FechaPago).ToShortDateString() : "";
+                        resultado.FechaVencimiento = DateTime.TryParse(objItem.FechaVencimiento.ToString(), out dateValue) ? (DateTime)objItem.FechaVencimiento : (DateTime?)null;
+                        resultado.FechaVencimientoToString = resultado.FechaVencimiento != null ? ((DateTime)resultado.FechaVencimiento).ToShortDateString() : "";
+                        resultado.Importe = objItem.Importe;
+                        resultado.MedioPago = objItem.MedioPago != null ? objItem.MedioPago.ToString() : "";
+                        resultado.NumeroComprobante = objItem.NumeroComprobante != null ? objItem.NumeroComprobante.ToString() : "";
+                        resultado.NumeroRecibo = objItem.NumeroRecibo != null ? objItem.NumeroRecibo.ToString() : "";
+                        resultado.Pago = objItem.Pago != null ? objItem.Pago.ToString() : ""; ;
+                        resultado.Saldo = objItem.Saldo;
+                        resultado.Semana = objItem.Semana != null ? objItem.Semana.ToString() : "";
+                        resultado.TipoComprobante = dllFuncionesGenerales.ToConvert(objItem.TipoComprobante);
+                        resultado.TipoComprobanteToString = dllFuncionesGenerales.ToConvertToString(objItem.TipoComprobante);
+
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, TipoComprobante, NumeroComprobante, pLoginWeb);
+                    return null;
+                }
+                finally
+                {
+                    tiempo.Parar();
+                }
+            }
+            return resultado;
+        }
+    [WebMethod]
+        public double ObtenerUnidadesEnSolicitudesNCFactNoEnvNoAnuladasDeFacturayObjetoComercial(string NumeroFactura, string ObjetoComercial, string LoginWeb)
+        {
+            double resultado = 0;
+            if (VerificarPermisos(CredencialAutenticacion))
+            {
+                try
+                {
+                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                    resultado = objServWeb.ObtenerUnidadesEnSolicitudesNCFactNoEnvNoAnuladasDeFacturayObjetoComercial(NumeroFactura, ObjetoComercial, LoginWeb);
+                }
+                catch (Exception ex)
+                {
+                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NumeroFactura, ObjetoComercial, LoginWeb);
+                }
+            }
             return resultado;
         }
 

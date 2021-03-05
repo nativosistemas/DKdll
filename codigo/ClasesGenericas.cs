@@ -707,7 +707,7 @@ namespace DKdll.codigo
             if (pObjLote != null)
             {
                 resultado = new cLote();
-                resultado.ID = pObjLote.ID;
+                resultado.ID = pObjLote.Id;
                 resultado.NombreProducto = pObjLote.NombreProducto;
                 resultado.NumeroLote = pObjLote.NumeroLote;
                 resultado.FechaVencimiento = pObjLote.FechaVencimiento;
