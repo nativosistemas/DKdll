@@ -468,6 +468,36 @@ namespace DKdll.codigo
             }
             return resultado;
         }
+        public static cRecibo ConvertToRecibo(dkInterfaceWeb.Recibo pObj)
+        {
+            cRecibo resultado = null;
+            if (pObj != null)
+            {
+                resultado = new cRecibo();
+                resultado.Numero = pObj.Numero;
+                DateTime dateValue;
+                resultado.Fecha = DateTime.TryParse(pObj.Fecha.ToString(), out dateValue) ? (DateTime)pObj.Fecha : (DateTime?)null;
+                resultado.FechaToString = resultado.Fecha != null ? ((DateTime)resultado.Fecha).ToShortDateString() : string.Empty;
+                resultado.FechaAnulacion = pObj.FechaAnulacion == null ? "" : pObj.FechaAnulacion.ToString();
+                resultado.Destinatario = pObj.Destinatario;
+                resultado.DireccionDestinatario = pObj.DireccionDestinatario;
+                resultado.LocalidadDestinatario = pObj.LocalidadDestinatario;
+                resultado.CondicionIVADestinatarioToString = ToConvertToString(pObj.CondicionIVADestinatario);
+                resultado.CuitDestinatario = pObj.CuitDestinatario;
+                resultado.NumeroCliente = pObj.NumeroCliente;
+                resultado.NumeroCuentaCorriente = pObj.NumeroCuentaCorriente;
+                resultado.TipoEnvioToString = ToConvertToString(pObj.TipoEnvio);
+                resultado.CodigoReparto = pObj.CodigoReparto == null ? "" : pObj.CodigoReparto.ToString();
+                resultado.MontoTotal = pObj.MontoTotal;
+                resultado.MontoTOTALenLetras = pObj.MontoTOTALenLetras;
+                resultado.CantidadHojas = pObj.CantidadHojas;
+                resultado.MontoEnDolares = pObj.MontoEnDolares == null ? "" : pObj.MontoEnDolares.ToString();
+                resultado.ComprobantePAMI = pObj.ComprobantePAMI;
+                // dynamic
+                //_objDetalleFactura.Importe = objListaDetalle[i].Importe == null ? "" : objListaDetalle[i].Importe.ToString();
+            }
+            return resultado;
+        }
         public static cNotaDeCredito ConvertToNotaDeCredito(dkInterfaceWeb.NotaDeCredito pObjNotaDeCredito)
         {
             cNotaDeCredito resultado = null;
@@ -592,6 +622,52 @@ namespace DKdll.codigo
                 //break;
                 case dkInterfaceWeb.EstadoCheque.Retirado:
                     return "Retirado";
+                default:
+                    return "";
+                    //    break;
+            }
+        }
+        public static string ToConvertToString(dkInterfaceWeb.CondicionIVAWeb pEstado)
+        {
+            switch (pEstado)
+            {
+                case dkInterfaceWeb.CondicionIVAWeb.ConsumidorFinal:
+                    return "ConsumidorFinal";
+                //break;
+                case dkInterfaceWeb.CondicionIVAWeb.Monotributo:
+                    return "Monotributo";
+                //break;
+                case dkInterfaceWeb.CondicionIVAWeb.NoResponsable:
+                    return "NoResponsable";
+                //break;
+                case dkInterfaceWeb.CondicionIVAWeb.ResponsableExento:
+                    return "ResponsableExento";
+                //break;
+                case dkInterfaceWeb.CondicionIVAWeb.ResponsableInscripto:
+                    return "ResponsableInscripto";
+                //break;
+                case dkInterfaceWeb.CondicionIVAWeb.ResponsableNoInscripto:
+                    return "ResponsableNoInscripto";
+                default:
+                    return "";
+                    //    break;
+            }
+        }
+        public static string ToConvertToString(dkObjetos.TipoDeEnvio pEstado)
+        {
+            switch (pEstado)
+            {
+                case dkObjetos.TipoDeEnvio.Cadetería:
+                    return "Cadetería";
+                //break;
+                case dkObjetos.TipoDeEnvio.Encomienda:
+                    return "Encomienda";
+                //break;
+                case dkObjetos.TipoDeEnvio.Mostrador:
+                    return "Mostrador";
+                //break;
+                case dkObjetos.TipoDeEnvio.Reparto:
+                    return "Reparto";
                 default:
                     return "";
                     //    break;

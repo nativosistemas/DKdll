@@ -1970,7 +1970,7 @@ namespace DKdll
                 }
                 catch (Exception ex)
                 {
-                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, colSDC,LoginWeb);
+                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, colSDC, LoginWeb);
                     return null;
                 }
                 finally
@@ -2046,7 +2046,7 @@ namespace DKdll
             return lista;
         }
 
-    [WebMethod]
+        [WebMethod]
         public List<cCtaCteMovimiento> ObtenerAplicacionesDeComprobantesPorTipoYNumero(string TipoComprobante, string NumeroComprobante, string pLoginWeb)
         {
             List<cCtaCteMovimiento> resultado = null;
@@ -2150,7 +2150,7 @@ namespace DKdll
             }
             return resultado;
         }
-    [WebMethod]
+        [WebMethod]
         public double ObtenerUnidadesEnSolicitudesNCFactNoEnvNoAnuladasDeFacturayObjetoComercial(string NumeroFactura, string ObjetoComercial, string LoginWeb)
         {
             double resultado = 0;
@@ -2165,6 +2165,72 @@ namespace DKdll
                 {
                     DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NumeroFactura, ObjetoComercial, LoginWeb);
                 }
+            }
+            return resultado;
+        }
+        //[WebMethod]
+        //public string ObtenerRecibo_Prueba()
+        //{
+        //    string resultado = "Ok";
+        //    var lla = ObtenerRecibo("X000102004872", "romanello");
+        //    return resultado;
+        //}
+        [WebMethod]
+        public cRecibo ObtenerRecibo(string pNumeroDoc, string pLoginWeb)
+        {
+            cRecibo resultado = null;
+            if (VerificarPermisos(CredencialAutenticacion))
+            {
+                classTiempo tiempo = new classTiempo("ObtenerRecibo");
+                try
+                {
+                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                    dkInterfaceWeb.Recibo obj = objServWeb.ObtenerReciboPorNumero(pNumeroDoc, pLoginWeb);
+                    if (obj != null)
+                    {
+                        resultado = dllFuncionesGenerales.ConvertToRecibo(obj);
+                        resultado.lista = ObtenerDetalleRecibo(pNumeroDoc, pLoginWeb);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pNumeroDoc, pLoginWeb);
+                    return null;
+                }
+                finally
+                {
+                    tiempo.Parar();
+                }
+            }
+            return resultado;
+        }
+        public List<cReciboDetalle> ObtenerDetalleRecibo(string pNumeroDoc, string pLoginWeb)
+        {
+            List<cReciboDetalle> resultado = null;
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                dkInterfaceWeb.ReciboItemCOLCOL objListaDetalle = objServWeb.ObtenerReciboItemsPorNumeroNuevo(pNumeroDoc, pLoginWeb);
+                if (objListaDetalle != null)
+                {
+                    resultado = new List<cReciboDetalle>();
+                    for (int i = 1; i <= objListaDetalle.Count(); i++)
+                    {
+                        cReciboDetalle _obj = new cReciboDetalle();
+                        dkInterfaceWeb.ReciboItem objItem = objListaDetalle.Item[i];
+                        _obj.NumeroRecibo = objItem.NumeroRecibo;
+                        _obj.NumeroHoja = objItem.NumeroHoja;
+                        _obj.NumeroItem = objItem.NumeroItem;
+                        _obj.Descripcion = objItem.Descripcion;
+                        _obj.Importe = objItem.Importe == null ? "" : objItem.Importe.ToString();
+                        _obj.ID = objItem.ID == null ? "" : objItem.ID.ToString();
+                        resultado.Add(_obj);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pNumeroDoc, pLoginWeb);
             }
             return resultado;
         }
