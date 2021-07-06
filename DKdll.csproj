@@ -109,7 +109,7 @@
     <COMReference Include="dkInterfaceWeb">
       <Guid>{13452D1C-E7F7-4EB0-BD56-AC4AD47836B7}</Guid>
       <VersionMajor>1</VersionMajor>
-      <VersionMinor>0</VersionMinor>
+      <VersionMinor>1</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
@@ -118,7 +118,7 @@
     <COMReference Include="dkObjetos">
       <Guid>{F5AE8824-99DB-4CF1-8483-140E1771FB8A}</Guid>
       <VersionMajor>1</VersionMajor>
-      <VersionMinor>1</VersionMinor>
+      <VersionMinor>7</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
