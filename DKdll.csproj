@@ -120,6 +120,8 @@
     <Compile Include="API\HolaController.cs" />
     <Compile Include="API\TestController.cs" />
     <Compile Include="API\TomarPedidoConIdCarritoIntranetController.cs" />
+    <Compile Include="API\TomarPedidoDeTransfersTelefonistaController.cs" />
+    <Compile Include="API\TomarPedidoTelefonistaController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -132,6 +134,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service.asmx.cs">
       <DependentUpon>Service.asmx</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>

@@ -11,10 +11,10 @@ namespace DKdll.codigo
     public class cLlamadasDLL
     {
 
-        public static cDllPedido TomarPedidoConIdCarrito(int pIdCarrito, string pLoginCliente, string pIdSucursal, string pMensajeEnFactura, string pMensajeEnRemito, string pTipoEnvio, List<cDllProductosAndCantidad> pListaProducto, bool pIsUrgente)
+        public static cDllPedido TomarPedidoTelefonista(int pIdCarrito, string pLoginCliente, string pIdSucursal, string pMensajeEnFactura, string pMensajeEnRemito, string pTipoEnvio, List<cDllProductosAndCantidad> pListaProducto, string pLoginTelefonista)
         {
             cDllPedido ResultadoFinal = null;
-            classTiempo tiempo = new classTiempo("TomarPedidoConIdCarrito");
+            classTiempo tiempo = new classTiempo("TomarPedidoTelefonista");
             try
             {
                 dkInterfaceWeb.Pedido Resultado;
@@ -49,8 +49,7 @@ namespace DKdll.codigo
                         //default:
                         //    break;
                 }
-
-                Resultado = objServWeb.TomarPedidoConIdCarrito(pIdCarrito, pedido, tipoEnvio, pIdSucursal, @"C:\RutaArchivoDLL", pIsUrgente);
+                Resultado = objServWeb.TomarPedidoTelefonista(pIdCarrito, pedido, tipoEnvio, pIdSucursal, @"C:\RutaArchivoDLL", pLoginTelefonista);
                 if (Resultado != null)
                 {
                     ResultadoFinal = dllFuncionesGenerales.ToConvert(Resultado);
@@ -58,7 +57,7 @@ namespace DKdll.codigo
             }
             catch (Exception ex)
             {
-                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pIdCarrito, pLoginCliente, pIdSucursal, pMensajeEnFactura, pMensajeEnRemito, pTipoEnvio, pListaProducto, pIsUrgente);
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pIdCarrito, pLoginCliente, pIdSucursal, pMensajeEnFactura, pMensajeEnRemito, pTipoEnvio, pListaProducto, pLoginTelefonista);
                 return null;
             }
             finally
@@ -66,6 +65,66 @@ namespace DKdll.codigo
                 tiempo.Parar();
             }
             return ResultadoFinal;
+        }
+        public static List<cDllPedidoTransfer> TomarPedidoDeTransfersTelefonista(int pIdCarrito, string pLoginCliente, string pIdSucursal, string pMensajeEnFactura, string pMensajeEnRemito, string pTipoEnvio, List<cDllProductosAndCantidad> pListaProducto, string pLoginTelefonista)
+        {
+            List<cDllPedidoTransfer> lista = null;
+
+            classTiempo tiempo = new classTiempo("TomarPedidoDeTransfersTelefonista");
+            try
+            {
+                lista = new List<cDllPedidoTransfer>();
+                dkInterfaceWeb.PedidoCOL Resultado;
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                dkInterfaceWeb.PedidoTransfer pedidoTransfer = new dkInterfaceWeb.PedidoTransfer();
+                foreach (cDllProductosAndCantidad item in pListaProducto)
+                {
+                    pedidoTransfer.Add(item.codProductoNombre, item.cantidad, item.IdTransfer);
+                }
+                pedidoTransfer.Login = pLoginCliente;
+                pedidoTransfer.MensajeEnFactura = pMensajeEnFactura;
+                pedidoTransfer.MensajeEnRemito = pMensajeEnRemito;
+
+                dkInterfaceWeb.TipoEnvio tipoEnvio = dkInterfaceWeb.TipoEnvio.Reparto;
+                switch (pTipoEnvio)
+                {
+                    case "E":
+                        tipoEnvio = dkInterfaceWeb.TipoEnvio.Encomienda;
+                        break;
+                    case "R":
+                        tipoEnvio = dkInterfaceWeb.TipoEnvio.Reparto;
+                        break;
+                    case "C":
+                        tipoEnvio = dkInterfaceWeb.TipoEnvio.Cadeteria;
+                        break;
+                    case "M":
+                        tipoEnvio = dkInterfaceWeb.TipoEnvio.Mostrador;
+                        break;
+                }
+                Resultado = objServWeb.TomarPedidoDeTransfersTelefonista(pIdCarrito, pedidoTransfer, tipoEnvio, pIdSucursal, @"C:\RutaArchivoDLL",pLoginTelefonista);
+                if (Resultado != null)
+                {
+                    for (int i = 1; i <= Resultado.Count(); i++)
+                    {
+                        lista.Add(dllFuncionesGenerales.ToConvertTransfer(Resultado[i]));
+                    }
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pIdCarrito, pLoginCliente, pIdSucursal, pMensajeEnFactura, pMensajeEnRemito, pTipoEnvio, pListaProducto, pLoginTelefonista);
+                return null;
+            }
+            finally
+            {
+                tiempo.Parar();
+            }
+
+            return lista;
         }
     }
 }

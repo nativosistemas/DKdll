@@ -6,12 +6,10 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-//using System.Web.Mvc;
 
 namespace DKdll.API
 {
-    [Route("api/[controller]")]
-    public class TomarPedidoConIdCarritoIntranetController : ApiController
+    public class TomarPedidoDeTransfersTelefonistaController : ApiController
     {
         [HttpPost]
         public IHttpActionResult Create([FromBody] TomarPedidoConIdCarritoRequest parameter)
@@ -20,7 +18,7 @@ namespace DKdll.API
             {
                 return BadRequest(ModelState);
             }
-           return Ok(cLlamadasHttp.TomarPedidoTelefonista(parameter));
+            return Ok(cLlamadasHttp.TomarPedidoDeTransfersTelefonista(parameter));
         }
     }
 }
