@@ -17,5 +17,9 @@ namespace DKdll.codigo
         {
             return cLlamadasDLL.TomarPedidoDeTransfersTelefonista(pValue.pIdCarrito, pValue.pLoginCliente, pValue.pIdSucursal, pValue.pMensajeEnFactura, pValue.pMensajeEnRemito, pValue.pTipoEnvio, pValue.pListaProducto, pValue.pLoginTelefonista);
         }
+        public static decimal ObtenerCreditoDisponible(string pLoginWeb)
+        {
+            return cLlamadasDLL.ObtenerCreditoDisponible(pLoginWeb);
+        }
     }
 }

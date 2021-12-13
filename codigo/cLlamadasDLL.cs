@@ -126,5 +126,25 @@ namespace DKdll.codigo
 
             return lista;
         }
+        public static Decimal ObtenerCreditoDisponible(string pLoginWeb)
+        {
+            decimal result = 0;
+            classTiempo tiempo = new classTiempo("ObtenerCreditoDisponible");
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                result = objServWeb.ObtenerCreditoDisponible(pLoginWeb);
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pLoginWeb);
+                return 0;
+            }
+            finally
+            {
+                tiempo.Parar();
+            }
+            return result;
+        }
     }
 }

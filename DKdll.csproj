@@ -118,8 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\HolaController.cs" />
-    <Compile Include="API\TestController.cs" />
-    <Compile Include="API\TomarPedidoConIdCarritoIntranetController.cs" />
+    <Compile Include="API\ObtenerCreditoDisponibleController.cs" />
     <Compile Include="API\TomarPedidoDeTransfersTelefonistaController.cs" />
     <Compile Include="API\TomarPedidoTelefonistaController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -165,7 +164,7 @@
     <COMReference Include="dkInterfaceWeb">
       <Guid>{13452D1C-E7F7-4EB0-BD56-AC4AD47836B7}</Guid>
       <VersionMajor>1</VersionMajor>
-      <VersionMinor>1</VersionMinor>
+      <VersionMinor>3</VersionMinor>
       <Lcid>0</Lcid>
       <WrapperTool>tlbimp</WrapperTool>
       <Isolated>False</Isolated>
