@@ -59,7 +59,7 @@ namespace DKdll.codigo
             {
                 DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pIdCarrito, pLoginCliente, pIdSucursal, pMensajeEnFactura, pMensajeEnRemito, pTipoEnvio, pListaProducto, pLoginTelefonista);
                 cDllPedido resultado_Exception = new cDllPedido();
-                resultado_Exception.Error = ex.Message;
+                resultado_Exception.web_Error = ex.Message;
                 return resultado_Exception;
             }
             finally
@@ -124,7 +124,7 @@ namespace DKdll.codigo
                     lista = new List<cDllPedidoTransfer>();
                 }
                 cDllPedidoTransfer resultado_Exception = new cDllPedidoTransfer();
-                resultado_Exception.Error = ex.Message;
+                resultado_Exception.web_Error = ex.Message;
                 lista.Add(resultado_Exception);
                 return lista;
             }
