@@ -58,7 +58,9 @@ namespace DKdll.codigo
             catch (Exception ex)
             {
                 DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pIdCarrito, pLoginCliente, pIdSucursal, pMensajeEnFactura, pMensajeEnRemito, pTipoEnvio, pListaProducto, pLoginTelefonista);
-                return null;
+                cDllPedido resultado_Exception = new cDllPedido();
+                resultado_Exception.Error = ex.Message;
+                return resultado_Exception;
             }
             finally
             {
@@ -101,7 +103,7 @@ namespace DKdll.codigo
                         tipoEnvio = dkInterfaceWeb.TipoEnvio.Mostrador;
                         break;
                 }
-                Resultado = objServWeb.TomarPedidoDeTransfersTelefonista(pIdCarrito, pedidoTransfer, tipoEnvio, pIdSucursal, @"C:\RutaArchivoDLL",pLoginTelefonista);
+                Resultado = objServWeb.TomarPedidoDeTransfersTelefonista(pIdCarrito, pedidoTransfer, tipoEnvio, pIdSucursal, @"C:\RutaArchivoDLL", pLoginTelefonista);
                 if (Resultado != null)
                 {
                     for (int i = 1; i <= Resultado.Count(); i++)
@@ -117,7 +119,14 @@ namespace DKdll.codigo
             catch (Exception ex)
             {
                 DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pIdCarrito, pLoginCliente, pIdSucursal, pMensajeEnFactura, pMensajeEnRemito, pTipoEnvio, pListaProducto, pLoginTelefonista);
-                return null;
+                if (lista == null)
+                {
+                    lista = new List<cDllPedidoTransfer>();
+                }
+                cDllPedidoTransfer resultado_Exception = new cDllPedidoTransfer();
+                resultado_Exception.Error = ex.Message;
+                lista.Add(resultado_Exception);
+                return lista;
             }
             finally
             {
