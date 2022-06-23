@@ -58,9 +58,8 @@ namespace DKdll.codigo
             catch (Exception ex)
             {
                 DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pIdCarrito, pLoginCliente, pIdSucursal, pMensajeEnFactura, pMensajeEnRemito, pTipoEnvio, pListaProducto, pLoginTelefonista);
-                cDllPedido resultado_Exception = new cDllPedido();
-                resultado_Exception.web_Error = ex.Message;
-                return resultado_Exception;
+                ResultadoFinal = new cDllPedido();
+                ResultadoFinal.web_Error = ex.Message;
             }
             finally
             {
@@ -122,11 +121,13 @@ namespace DKdll.codigo
                 if (lista == null)
                 {
                     lista = new List<cDllPedidoTransfer>();
+                    lista.Add(new cDllPedidoTransfer());
                 }
-                cDllPedidoTransfer resultado_Exception = new cDllPedidoTransfer();
-                resultado_Exception.web_Error = ex.Message;
-                lista.Add(resultado_Exception);
-                return lista;
+                else if (lista.Count == 0)
+                {
+                    lista.Add(new cDllPedidoTransfer());
+                }
+                lista[0].web_Error = ex.Message;
             }
             finally
             {
