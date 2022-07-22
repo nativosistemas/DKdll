@@ -119,8 +119,13 @@
   <ItemGroup>
     <Compile Include="API\HolaController.cs" />
     <Compile Include="API\ObtenerCreditoDisponibleController.cs" />
+    <Compile Include="API\TomarPedidoConIdCarritoController.cs" />
+    <Compile Include="API\TomarPedidoController.cs" />
+    <Compile Include="API\TomarPedidoDeTransfersConIdCarritoController.cs" />
+    <Compile Include="API\TomarPedidoDeTransfersController.cs" />
     <Compile Include="API\TomarPedidoDeTransfersTelefonistaController.cs" />
     <Compile Include="API\TomarPedidoTelefonistaController.cs" />
+    <Compile Include="API\ValidarExistenciaDeCarritoWebPasadoController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />

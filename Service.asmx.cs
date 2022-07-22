@@ -175,59 +175,7 @@ namespace DKdll
             cDllPedido ResultadoFinal = null;
             if (VerificarPermisos(CredencialAutenticacion))
             {
-                classTiempo tiempo = new classTiempo("TomarPedido");
-                //ResultadoFinal = new cDllPedido();
-                try
-                {
-                    dkInterfaceWeb.Pedido Resultado;
-                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
-                    dkInterfaceWeb.Pedido pedido = new dkInterfaceWeb.Pedido();
-
-                    // llenar datos pedidos
-                    pedido.Login = pLoginCliente;
-                    pedido.MensajeEnFactura = pMensajeEnFactura;
-                    pedido.MensajeEnRemito = pMensajeEnRemito;
-
-                    //List<cDllProductosAndCantidad> ListaProducto = Serializador.DeserializarJson<List<cDllProductosAndCantidad>>(pListaProducto);
-                    // Cargar productos al carrito
-                    foreach (cDllProductosAndCantidad item in pListaProducto)
-                    {
-                        pedido.Add(item.codProductoNombre, item.cantidad, item.isOferta ? "$" : " ");
-                    }
-                    dkInterfaceWeb.TipoEnvio tipoEnvio = dkInterfaceWeb.TipoEnvio.Reparto;
-                    switch (pTipoEnvio)
-                    {
-                        case "E":
-                            tipoEnvio = dkInterfaceWeb.TipoEnvio.Encomienda;
-                            break;
-                        case "R":
-                            tipoEnvio = dkInterfaceWeb.TipoEnvio.Reparto;
-                            break;
-                        case "C":
-                            tipoEnvio = dkInterfaceWeb.TipoEnvio.Cadeteria;
-                            break;
-                        case "M":
-                            tipoEnvio = dkInterfaceWeb.TipoEnvio.Mostrador;
-                            break;
-                            //default:
-                            //    break;
-                    }
-
-                    Resultado = objServWeb.TomarPedido(pedido, tipoEnvio, pIdSucursal, @"C:\RutaArchivoDLL", pIsUrgente);
-                    if (Resultado != null)
-                    {
-                        ResultadoFinal = dllFuncionesGenerales.ToConvert(Resultado);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pLoginCliente, pIdSucursal, pMensajeEnFactura, pMensajeEnRemito, pTipoEnvio, pListaProducto, pIsUrgente);
-                    return null;
-                }
-                finally
-                {
-                    tiempo.Parar();
-                }
+                cLlamadasDLL.TomarPedido(pLoginCliente, pIdSucursal, pMensajeEnFactura, pMensajeEnRemito, pTipoEnvio, pListaProducto, pIsUrgente);
             }
             return ResultadoFinal;
         }
@@ -1040,59 +988,7 @@ namespace DKdll
             List<cDllPedidoTransfer> lista = null;
             if (VerificarPermisos(CredencialAutenticacion))
             {
-                classTiempo tiempo = new classTiempo("TomarPedidoDeTransfers");
-                try
-                {
-                    lista = new List<cDllPedidoTransfer>();
-                    dkInterfaceWeb.PedidoCOL Resultado;
-                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
-                    dkInterfaceWeb.PedidoTransfer pedidoTransfer = new dkInterfaceWeb.PedidoTransfer();
-                    foreach (cDllProductosAndCantidad item in pListaProducto)
-                    {
-                        pedidoTransfer.Add(item.codProductoNombre, item.cantidad, item.IdTransfer);
-                    }
-                    pedidoTransfer.Login = pLoginCliente;
-                    pedidoTransfer.MensajeEnFactura = pMensajeEnFactura;
-                    pedidoTransfer.MensajeEnRemito = pMensajeEnRemito;
-
-                    dkInterfaceWeb.TipoEnvio tipoEnvio = dkInterfaceWeb.TipoEnvio.Reparto;
-                    switch (pTipoEnvio)
-                    {
-                        case "E":
-                            tipoEnvio = dkInterfaceWeb.TipoEnvio.Encomienda;
-                            break;
-                        case "R":
-                            tipoEnvio = dkInterfaceWeb.TipoEnvio.Reparto;
-                            break;
-                        case "C":
-                            tipoEnvio = dkInterfaceWeb.TipoEnvio.Cadeteria;
-                            break;
-                        case "M":
-                            tipoEnvio = dkInterfaceWeb.TipoEnvio.Mostrador;
-                            break;
-                    }
-                    Resultado = objServWeb.TomarPedidoDeTransfers(pedidoTransfer, tipoEnvio, pIdSucursal, @"C:\RutaArchivoDLL");
-                    if (Resultado != null)
-                    {
-                        for (int i = 1; i <= Resultado.Count(); i++)
-                        {
-                            lista.Add(dllFuncionesGenerales.ToConvertTransfer(Resultado[i]));
-                        }
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pLoginCliente, pIdSucursal, pMensajeEnFactura, pMensajeEnRemito, pTipoEnvio, pListaProducto);
-                    return null;
-                }
-                finally
-                {
-                    tiempo.Parar();
-                }
+                lista = cLlamadasDLL.TomarPedidoDeTransfers(pLoginCliente, pIdSucursal, pMensajeEnFactura, pMensajeEnRemito, pTipoEnvio, pListaProducto);
             }
             return lista;
         }
@@ -1526,59 +1422,7 @@ namespace DKdll
             cDllPedido ResultadoFinal = null;
             if (VerificarPermisos(CredencialAutenticacion))
             {
-                classTiempo tiempo = new classTiempo("TomarPedidoConIdCarrito");
-                //ResultadoFinal = new cDllPedido();
-                try
-                {
-                    dkInterfaceWeb.Pedido Resultado;
-                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
-                    dkInterfaceWeb.Pedido pedido = new dkInterfaceWeb.Pedido();
-
-                    // llenar datos pedidos
-                    pedido.Login = pLoginCliente;
-                    pedido.MensajeEnFactura = pMensajeEnFactura;
-                    pedido.MensajeEnRemito = pMensajeEnRemito;
-
-                    //List<cDllProductosAndCantidad> ListaProducto = Serializador.DeserializarJson<List<cDllProductosAndCantidad>>(pListaProducto);
-                    // Cargar productos al carrito
-                    foreach (cDllProductosAndCantidad item in pListaProducto)
-                    {
-                        pedido.Add(item.codProductoNombre, item.cantidad, item.isOferta ? "$" : " ");
-                    }
-                    dkInterfaceWeb.TipoEnvio tipoEnvio = dkInterfaceWeb.TipoEnvio.Reparto;
-                    switch (pTipoEnvio)
-                    {
-                        case "E":
-                            tipoEnvio = dkInterfaceWeb.TipoEnvio.Encomienda;
-                            break;
-                        case "R":
-                            tipoEnvio = dkInterfaceWeb.TipoEnvio.Reparto;
-                            break;
-                        case "C":
-                            tipoEnvio = dkInterfaceWeb.TipoEnvio.Cadeteria;
-                            break;
-                        case "M":
-                            tipoEnvio = dkInterfaceWeb.TipoEnvio.Mostrador;
-                            break;
-                            //default:
-                            //    break;
-                    }
-
-                    Resultado = objServWeb.TomarPedidoConIdCarrito(pIdCarrito, pedido, tipoEnvio, pIdSucursal, @"C:\RutaArchivoDLL", pIsUrgente);
-                    if (Resultado != null)
-                    {
-                        ResultadoFinal = dllFuncionesGenerales.ToConvert(Resultado);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pIdCarrito, pLoginCliente, pIdSucursal, pMensajeEnFactura, pMensajeEnRemito, pTipoEnvio, pListaProducto, pIsUrgente);
-                    return null;
-                }
-                finally
-                {
-                    tiempo.Parar();
-                }
+                ResultadoFinal = cLlamadasDLL.TomarPedidoConIdCarrito(pIdCarrito, pLoginCliente, pIdSucursal, pMensajeEnFactura, pMensajeEnRemito, pTipoEnvio, pListaProducto, pIsUrgente);
             }
             return ResultadoFinal;
         }
@@ -1588,59 +1432,7 @@ namespace DKdll
             List<cDllPedidoTransfer> lista = null;
             if (VerificarPermisos(CredencialAutenticacion))
             {
-                classTiempo tiempo = new classTiempo("TomarPedidoDeTransfersConIdCarrito");
-                try
-                {
-                    lista = new List<cDllPedidoTransfer>();
-                    dkInterfaceWeb.PedidoCOL Resultado;
-                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
-                    dkInterfaceWeb.PedidoTransfer pedidoTransfer = new dkInterfaceWeb.PedidoTransfer();
-                    foreach (cDllProductosAndCantidad item in pListaProducto)
-                    {
-                        pedidoTransfer.Add(item.codProductoNombre, item.cantidad, item.IdTransfer);
-                    }
-                    pedidoTransfer.Login = pLoginCliente;
-                    pedidoTransfer.MensajeEnFactura = pMensajeEnFactura;
-                    pedidoTransfer.MensajeEnRemito = pMensajeEnRemito;
-
-                    dkInterfaceWeb.TipoEnvio tipoEnvio = dkInterfaceWeb.TipoEnvio.Reparto;
-                    switch (pTipoEnvio)
-                    {
-                        case "E":
-                            tipoEnvio = dkInterfaceWeb.TipoEnvio.Encomienda;
-                            break;
-                        case "R":
-                            tipoEnvio = dkInterfaceWeb.TipoEnvio.Reparto;
-                            break;
-                        case "C":
-                            tipoEnvio = dkInterfaceWeb.TipoEnvio.Cadeteria;
-                            break;
-                        case "M":
-                            tipoEnvio = dkInterfaceWeb.TipoEnvio.Mostrador;
-                            break;
-                    }
-                    Resultado = objServWeb.TomarPedidoDeTransfersConIdCarrito(pIdCarrito, pedidoTransfer, tipoEnvio, pIdSucursal, @"C:\RutaArchivoDLL");
-                    if (Resultado != null)
-                    {
-                        for (int i = 1; i <= Resultado.Count(); i++)
-                        {
-                            lista.Add(dllFuncionesGenerales.ToConvertTransfer(Resultado[i]));
-                        }
-                    }
-                    else
-                    {
-                        return null;
-                    }
-                }
-                catch (Exception ex)
-                {
-                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pIdCarrito, pLoginCliente, pIdSucursal, pMensajeEnFactura, pMensajeEnRemito, pTipoEnvio, pListaProducto);
-                    return null;
-                }
-                finally
-                {
-                    tiempo.Parar();
-                }
+                lista = cLlamadasDLL.TomarPedidoDeTransfersConIdCarrito(pIdCarrito, pLoginCliente, pIdSucursal, pMensajeEnFactura, pMensajeEnRemito, pTipoEnvio, pListaProducto);
             }
             return lista;
         }
@@ -1649,16 +1441,7 @@ namespace DKdll
         {
             if (VerificarPermisos(CredencialAutenticacion))
             {
-                try
-                {
-                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
-                    return objServWeb.ValidarExistenciaDeCarritoWebPasado(pIdCarrito);
-                }
-                catch (Exception ex)
-                {
-                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pIdCarrito);
-                    return false;
-                }
+                return cLlamadasDLL.ValidarExistenciaDeCarritoWebPasado(pIdCarrito);
             }
             return false;
         }

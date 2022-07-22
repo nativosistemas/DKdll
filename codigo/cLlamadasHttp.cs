@@ -21,5 +21,25 @@ namespace DKdll.codigo
         {
             return cLlamadasDLL.ObtenerCreditoDisponible(pLoginWeb);
         }
+        public static cDllPedido TomarPedido(TomarPedidoConIdCarritoRequest pValue)
+        {
+            return cLlamadasDLL.TomarPedido(pValue.pLoginCliente, pValue.pIdSucursal, pValue.pMensajeEnFactura, pValue.pMensajeEnRemito, pValue.pTipoEnvio, pValue.pListaProducto, pValue.pIsUrgente);
+        }
+        public static List<cDllPedidoTransfer> TomarPedidoDeTransfers(TomarPedidoConIdCarritoRequest pValue)
+        {
+            return cLlamadasDLL.TomarPedidoDeTransfers(pValue.pLoginCliente, pValue.pIdSucursal, pValue.pMensajeEnFactura, pValue.pMensajeEnRemito, pValue.pTipoEnvio, pValue.pListaProducto);
+        }
+        public static List<cDllPedidoTransfer> TomarPedidoDeTransfersConIdCarrito(TomarPedidoConIdCarritoRequest pValue)
+        {
+            return cLlamadasDLL.TomarPedidoDeTransfersConIdCarrito(pValue.pIdCarrito, pValue.pLoginCliente, pValue.pIdSucursal, pValue.pMensajeEnFactura, pValue.pMensajeEnRemito, pValue.pTipoEnvio, pValue.pListaProducto);
+        }
+        public static cDllPedido TomarPedidoConIdCarrito(TomarPedidoConIdCarritoRequest pValue)
+        {
+            return cLlamadasDLL.TomarPedidoConIdCarrito(pValue.pIdCarrito, pValue.pLoginCliente, pValue.pIdSucursal, pValue.pMensajeEnFactura, pValue.pMensajeEnRemito, pValue.pTipoEnvio, pValue.pListaProducto, pValue.pIsUrgente);
+        }
+        public static bool ValidarExistenciaDeCarritoWebPasado(TomarPedidoConIdCarritoRequest pValue)
+        {
+            return cLlamadasDLL.ValidarExistenciaDeCarritoWebPasado(pValue.pIdCarrito);
+        }
     }
 }
