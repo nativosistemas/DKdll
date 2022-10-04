@@ -635,34 +635,7 @@ namespace DKdll
             List<cDllPedido> resultado = null;
             if (VerificarPermisos(CredencialAutenticacion))
             {
-                classTiempo tiempo = new classTiempo("ObtenerPedidosEntreFechas");
-                try
-                {
-                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
-                    dkInterfaceWeb.PedidoCOL objPedidos = objServWeb.ObtenerPedidosDePuntoDeVentaEntreFechas(pLoginWeb, pDesde, pHasta);
-                    if (objPedidos != null)
-                    {
-                        resultado = new List<cDllPedido>();
-                        if (objPedidos.Count() > 0)
-                        {
-                            for (int i = 1; i <= objPedidos.Count(); i++)
-                            {
-                                //objPedidos[i].
-                                cDllPedido obj = dllFuncionesGenerales.ToConvert(objPedidos[i]);
-                                resultado.Add(obj);
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pDesde, pHasta, pLoginWeb);
-                    return null;
-                }
-                finally
-                {
-                    tiempo.Parar();
-                }
+                resultado = cLlamadasDLL.ObtenerPedidosEntreFechas(pDesde, pHasta, pLoginWeb);
             }
             return resultado;
         }

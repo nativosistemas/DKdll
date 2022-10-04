@@ -41,5 +41,9 @@ namespace DKdll.codigo
         {
             return cLlamadasDLL.ValidarExistenciaDeCarritoWebPasado(pValue.pIdCarrito);
         }
+        public static List<cDllPedido> ObtenerPedidosEntreFechas(ObtenerPedidosEntreFechasRequest pValue)
+        {
+            return cLlamadasDLL.ObtenerPedidosEntreFechas(pValue.pDesde, pValue.pHasta, pValue.pLoginWeb);
+        }
     }
 }
