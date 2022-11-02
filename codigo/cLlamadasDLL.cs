@@ -203,7 +203,9 @@ namespace DKdll.codigo
             catch (Exception ex)
             {
                 DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pLoginCliente, pIdSucursal, pMensajeEnFactura, pMensajeEnRemito, pTipoEnvio, pListaProducto, pIsUrgente);
-                return null;
+                ResultadoFinal = new cDllPedido();
+                ResultadoFinal.web_Error = ex.Message;
+                ResultadoFinal.web_Error_StackTrace = ex.StackTrace;
             }
             finally
             {
@@ -255,13 +257,23 @@ namespace DKdll.codigo
                 }
                 else
                 {
-                    return null;
+                    lista = null;
                 }
             }
             catch (Exception ex)
             {
                 DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pLoginCliente, pIdSucursal, pMensajeEnFactura, pMensajeEnRemito, pTipoEnvio, pListaProducto);
-                return null;
+                if (lista == null)
+                {
+                    lista = new List<cDllPedidoTransfer>();
+                    lista.Add(new cDllPedidoTransfer());
+                }
+                else if (lista.Count == 0)
+                {
+                    lista.Add(new cDllPedidoTransfer());
+                }
+                lista[0].web_Error = ex.Message;
+                lista[0].web_Error_StackTrace = ex.StackTrace;
             }
             finally
             {
@@ -313,13 +325,23 @@ namespace DKdll.codigo
                 }
                 else
                 {
-                    return null;
+                    lista = null;
                 }
             }
             catch (Exception ex)
             {
                 DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pIdCarrito, pLoginCliente, pIdSucursal, pMensajeEnFactura, pMensajeEnRemito, pTipoEnvio, pListaProducto);
-                return null;
+                if (lista == null)
+                {
+                    lista = new List<cDllPedidoTransfer>();
+                    lista.Add(new cDllPedidoTransfer());
+                }
+                else if (lista.Count == 0)
+                {
+                    lista.Add(new cDllPedidoTransfer());
+                }
+                lista[0].web_Error = ex.Message;
+                lista[0].web_Error_StackTrace = ex.StackTrace;
             }
             finally
             {
@@ -373,7 +395,9 @@ namespace DKdll.codigo
             catch (Exception ex)
             {
                 DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pIdCarrito, pLoginCliente, pIdSucursal, pMensajeEnFactura, pMensajeEnRemito, pTipoEnvio, pListaProducto, pIsUrgente);
-                return null;
+                ResultadoFinal = new cDllPedido();
+                ResultadoFinal.web_Error = ex.Message;
+                ResultadoFinal.web_Error_StackTrace = ex.StackTrace;
             }
             finally
             {
