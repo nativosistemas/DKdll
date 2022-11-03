@@ -117,9 +117,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="API\AgregarVacunasController.cs" />
     <Compile Include="API\HolaController.cs" />
     <Compile Include="API\ObtenerCreditoDisponibleController.cs" />
     <Compile Include="API\ObtenerPedidosEntreFechasController.cs" />
+    <Compile Include="API\ObtenerReservasDeVacunasPorClienteEntreFechasController.cs" />
+    <Compile Include="API\ObtenerTotalReservasDeVacunasPorClienteEntreFechasController.cs" />
     <Compile Include="API\TomarPedidoConIdCarritoController.cs" />
     <Compile Include="API\TomarPedidoController.cs" />
     <Compile Include="API\TomarPedidoDeTransfersConIdCarritoController.cs" />
@@ -156,6 +159,9 @@
     <Folder Include="Controllers\" />
     <Folder Include="Data\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\AgregarVacunas\" />
+    <Folder Include="Views\ObtenerReservasDeVacunasPorClienteEntreFechas\" />
+    <Folder Include="Views\ObtenerTotalReservasDeVacunasPorClienteEntreFechas\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DKbase\DKbase.csproj">

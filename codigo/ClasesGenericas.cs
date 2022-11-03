@@ -909,6 +909,66 @@ namespace DKdll.codigo
             }
             return resultado;
         }
-    }
+        public static cVacuna ToConvert(dkInterfaceWeb.Vacuna pValue)
+        {
+            cVacuna result = null;
+            if (pValue != null)
+            {
+                result = new cVacuna();
+                result.ID = pValue.ID;
+                result.Login = pValue.Login != null ? pValue.Login.ToString() : string.Empty;
+                result.NombreProducto = pValue.NombreProducto != null ? pValue.NombreProducto.ToString() : string.Empty;
+                result.UnidadesVendidas = pValue.UnidadesVendidas;
+            }
+            return result;
+        }
+        public static cReservaVacuna ToConvert(dkInterfaceWeb.ReservaVacuna pValue)
+        {
+            cReservaVacuna result = null;
+            if (pValue != null)
+            {
+                result = new cReservaVacuna();
+                result.ID = pValue.ID;
+                result.TomaWeb = pValue.TomaWeb;
+                result.NombreProducto = pValue.NombreProducto != null ? pValue.NombreProducto.ToString() : string.Empty;
+                result.UnidadesVendidas = pValue.UnidadesVendidas;
+                result.DescripcionPack = pValue.DescripcionPack != null ? pValue.DescripcionPack.ToString() : string.Empty;
+                result.FechaAlta = pValue.FechaAlta;
+                //public string Estado { get; set; }
+                switch (pValue.Estado)
+                {
+                    case dkInterfaceWeb.EstadoVacunaWeb.ComprobanteEnEspera:
+                        result.Estado = "ComprobanteEnEspera";
+                        break;
+                    case dkInterfaceWeb.EstadoVacunaWeb.ComprobanteRecibido:
+                        result.Estado = "ComprobanteRecibido";
+                        break;
+                    case dkInterfaceWeb.EstadoVacunaWeb.VacunaAnulado:
+                        result.Estado = "VacunaAnulado";
+                        break;
+                    case dkInterfaceWeb.EstadoVacunaWeb.VacunaFacturado:
+                        result.Estado = "VacunaFacturado";
+                        break;
+                    default:
+                        result.Estado = pValue.Estado.ToString();
+                        break;
+                }
+            }
+            return result;
+        }
+        public static dkInterfaceWeb.Vacuna ToConvert(cVacuna pValue)
+        {
+            dkInterfaceWeb.Vacuna result = null;
+            if (pValue != null)
+            {
+                result = new dkInterfaceWeb.Vacuna();
+                result.ID = pValue.ID;
+                result.Login = pValue.Login;
+                result.NombreProducto = pValue.NombreProducto;
+                result.UnidadesVendidas = pValue.UnidadesVendidas;
 
+            }
+            return result;
+        }
+    }
 }

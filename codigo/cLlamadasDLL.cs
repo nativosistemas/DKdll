@@ -446,5 +446,73 @@ namespace DKdll.codigo
             }
             return resultado;
         }
+        public static List<cVacuna> ObtenerTotalReservasDeVacunasPorClienteEntreFechas(DateTime pDesde  , DateTime pHasta, String pLoginWEB  )
+        {
+            List<cVacuna> resultado = null;
+            try
+            {            
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                dkInterfaceWeb.VacunaCOL oResult = objServWeb.ObtenerTotalReservasDeVacunasPorClienteEntreFechas(pDesde, pHasta, pLoginWEB);
+                if (oResult != null)
+                {
+                    resultado = new List<cVacuna>();
+                    for (int i = 1; i <= oResult.Count(); i++)
+                    {
+                        resultado.Add(dllFuncionesGenerales.ToConvert(oResult.Item[i]));
+                    }
+                }
+            } 
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pDesde, pHasta, pLoginWEB);
+                return null;
+            }
+            return resultado;
+        }
+        public static List<cReservaVacuna> ObtenerReservasDeVacunasPorClienteEntreFechas(DateTime pDesde, DateTime pHasta, String pLoginWEB)
+        {
+            List<cReservaVacuna> resultado = null;
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                dkInterfaceWeb.ReservaVacunaCOL oResult = objServWeb.ObtenerReservasDeVacunasPorClienteEntreFechas(pDesde, pHasta, pLoginWEB);
+                if (oResult != null)
+                {
+                    resultado = new List<cReservaVacuna>();
+                    for (int i = 1; i <= oResult.Count(); i++)
+                    {
+                        resultado.Add(dllFuncionesGenerales.ToConvert(oResult[i]));
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pDesde, pHasta, pLoginWEB);
+                return null;
+            }
+            return resultado;
+        }
+
+        public static bool? AgregarVacunas(List<cVacuna> pVacunas)
+        {
+            bool resultado = false;
+            try
+            {
+                dkInterfaceWeb.VacunaCOL parameter = new dkInterfaceWeb.VacunaCOL();
+                foreach (cVacuna item in pVacunas)
+                {
+                    parameter.Add(dllFuncionesGenerales.ToConvert(item));
+                }              
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                objServWeb.AgregarVacunas(parameter);
+                resultado = true;
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pVacunas);
+                return null;
+            }
+            return resultado;
+        }
     }
 }
