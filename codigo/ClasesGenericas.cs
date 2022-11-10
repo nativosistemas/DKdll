@@ -959,14 +959,22 @@ namespace DKdll.codigo
         public static dkInterfaceWeb.Vacuna ToConvert(cVacuna pValue)
         {
             dkInterfaceWeb.Vacuna result = null;
-            if (pValue != null)
+            try
             {
-                result = new dkInterfaceWeb.Vacuna();
-                result.ID = pValue.ID;
-                result.Login = pValue.Login;
-                result.NombreProducto = pValue.NombreProducto;
-                result.UnidadesVendidas = pValue.UnidadesVendidas;
+                if (pValue != null)
+                {
+                    result = new dkInterfaceWeb.Vacuna();
+                    result.ID = pValue.ID;
+                    result.Login = pValue.Login;
+                    result.NombreProducto = pValue.NombreProducto;
+                    result.UnidadesVendidas = pValue.UnidadesVendidas;
 
+                }
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
             }
             return result;
         }

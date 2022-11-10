@@ -446,11 +446,11 @@ namespace DKdll.codigo
             }
             return resultado;
         }
-        public static List<cVacuna> ObtenerTotalReservasDeVacunasPorClienteEntreFechas(DateTime pDesde  , DateTime pHasta, String pLoginWEB  )
+        public static List<cVacuna> ObtenerTotalReservasDeVacunasPorClienteEntreFechas(DateTime pDesde, DateTime pHasta, String pLoginWEB)
         {
             List<cVacuna> resultado = null;
             try
-            {            
+            {
                 dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
                 dkInterfaceWeb.VacunaCOL oResult = objServWeb.ObtenerTotalReservasDeVacunasPorClienteEntreFechas(pDesde, pHasta, pLoginWEB);
                 if (oResult != null)
@@ -461,7 +461,7 @@ namespace DKdll.codigo
                         resultado.Add(dllFuncionesGenerales.ToConvert(oResult.Item[i]));
                     }
                 }
-            } 
+            }
             catch (Exception ex)
             {
                 DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pDesde, pHasta, pLoginWEB);
@@ -498,11 +498,17 @@ namespace DKdll.codigo
             bool resultado = false;
             try
             {
-                dkInterfaceWeb.VacunaCOL parameter = new dkInterfaceWeb.VacunaCOL();
+                // new dkInterfaceWeb.SolicitudDevClienteCOL();
+                dkInterfaceWeb.VacunaCOL parameter;
+                parameter = new dkInterfaceWeb.VacunaCOL();
                 foreach (cVacuna item in pVacunas)
                 {
-                    parameter.Add(dllFuncionesGenerales.ToConvert(item));
-                }              
+                    var o = dllFuncionesGenerales.ToConvert(item);
+                    if (o != null)
+                    {
+                        parameter.Add(o);
+                    }
+                }
                 dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
                 objServWeb.AgregarVacunas(parameter);
                 resultado = true;
