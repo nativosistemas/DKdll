@@ -934,6 +934,7 @@ namespace DKdll.codigo
                 result.UnidadesVendidas = pValue.UnidadesVendidas;
                 result.DescripcionPack = pValue.DescripcionPack != null ? pValue.DescripcionPack.ToString() : string.Empty;
                 result.FechaAlta = pValue.FechaAlta;
+                result.FechaAltaToString = pValue.FechaAlta != null ? pValue.FechaAlta.ToString() : string.Empty;
                 //public string Estado { get; set; }
                 switch (pValue.Estado)
                 {
