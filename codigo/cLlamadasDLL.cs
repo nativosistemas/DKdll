@@ -493,7 +493,7 @@ namespace DKdll.codigo
             return resultado;
         }
 
-        public static bool? AgregarVacunas(List<cVacuna> pVacunas)
+        public static bool? AgregarVacunas(List<cVacuna> pVacunas,string pLoginTelefonista = null)
         {
             bool resultado = false;
             try
@@ -510,7 +510,14 @@ namespace DKdll.codigo
                     }
                 }
                 dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
-                objServWeb.AgregarVacunas(parameter);
+                if (string.IsNullOrEmpty(pLoginTelefonista))
+                {
+                    objServWeb.AgregarVacunas(parameter);
+                }
+                else
+                {
+                    objServWeb.AgregarVacunasTelefonista(parameter, pLoginTelefonista);
+                }
                 resultado = true;
             }
             catch (Exception ex)

@@ -19,7 +19,7 @@ namespace DKdll.API
             {
                 return BadRequest(ModelState);
             }
-            return Ok(cLlamadasDLL.AgregarVacunas(parameter.pVacunas));
+            return Ok(cLlamadasDLL.AgregarVacunas(parameter.pVacunas,parameter.pLoginTelefonista));
         }
     }
 }
