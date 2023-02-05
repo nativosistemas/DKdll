@@ -493,7 +493,7 @@ namespace DKdll.codigo
             return resultado;
         }
 
-        public static bool? AgregarVacunas(List<cVacuna> pVacunas,string pLoginTelefonista = null)
+        public static bool? AgregarVacunas(List<cVacuna> pVacunas, string pLoginTelefonista = null)
         {
             bool resultado = false;
             try
@@ -526,6 +526,18 @@ namespace DKdll.codigo
                 return null;
             }
             return resultado;
+        }
+        public static void ModificarPasswordWEB(string pIdentificadorCliente, string pPassActual, string pPassNueva)
+        {
+            dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+            try
+            {
+                objServWeb.ModificarPasswordWEB(pIdentificadorCliente, pPassActual, pPassNueva);
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pIdentificadorCliente, pPassActual, pPassNueva);
+            }
         }
     }
 }

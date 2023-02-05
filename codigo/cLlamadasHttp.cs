@@ -45,5 +45,9 @@ namespace DKdll.codigo
         {
             return cLlamadasDLL.ObtenerPedidosEntreFechas(pValue.pDesde, pValue.pHasta, pValue.pLoginWeb);
         }
+        public static void ModificarPasswordWEB(string pIdentificadorCliente, string pPassActual, string pPassNueva)
+        {
+             cLlamadasDLL.ModificarPasswordWEB( pIdentificadorCliente,  pPassActual,  pPassNueva);
+        }
     }
 }

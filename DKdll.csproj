@@ -119,6 +119,7 @@
   <ItemGroup>
     <Compile Include="API\AgregarVacunasController.cs" />
     <Compile Include="API\HolaController.cs" />
+    <Compile Include="API\ModificarPasswordWEBController.cs" />
     <Compile Include="API\ObtenerCreditoDisponibleController.cs" />
     <Compile Include="API\ObtenerPedidosEntreFechasController.cs" />
     <Compile Include="API\ObtenerReservasDeVacunasPorClienteEntreFechasController.cs" />
