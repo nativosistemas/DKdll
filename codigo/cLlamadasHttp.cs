@@ -47,7 +47,11 @@ namespace DKdll.codigo
         }
         public static void ModificarPasswordWEB(string pIdentificadorCliente, string pPassActual, string pPassNueva)
         {
-             cLlamadasDLL.ModificarPasswordWEB( pIdentificadorCliente,  pPassActual,  pPassNueva);
+            cLlamadasDLL.ModificarPasswordWEB(pIdentificadorCliente, pPassActual, pPassNueva);
+        }
+        public static cFactura ObtenerFactura(string pNumeroFactura, string pLoginWeb)
+        {
+            return cLlamadasDLL.ObtenerFactura(pNumeroFactura, pLoginWeb);
         }
     }
 }

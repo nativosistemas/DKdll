@@ -539,5 +539,63 @@ namespace DKdll.codigo
                 DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pIdentificadorCliente, pPassActual, pPassNueva);
             }
         }
+        public static List<cFacturaDetalle> ObtenerDetalleFactura(string pNumeroFactura)
+        {
+            List<cFacturaDetalle> resultado = null;
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                dkInterfaceWeb.FacturaItemCOL objListaDetalle = objServWeb.ObtenerItemsDeFactura(pNumeroFactura);
+                if (objListaDetalle != null)
+                {
+                    resultado = new List<cFacturaDetalle>();
+                    for (int i = 1; i <= objListaDetalle.Count(); i++)
+                    {
+                        cFacturaDetalle _objDetalleFactura = new cFacturaDetalle();
+                        _objDetalleFactura.Cantidad = objListaDetalle[i].Cantidad == null ? "" : objListaDetalle[i].Cantidad.ToString();
+                        _objDetalleFactura.Caracteristica = objListaDetalle[i].Caracteristica == null ? "" : objListaDetalle[i].Caracteristica.ToString();
+                        _objDetalleFactura.Descripcion = objListaDetalle[i].Descripcion;
+                        _objDetalleFactura.Importe = objListaDetalle[i].Importe == null ? "" : objListaDetalle[i].Importe.ToString();
+                        _objDetalleFactura.NumeroFactura = objListaDetalle[i].NumeroFactura;
+                        _objDetalleFactura.NumeroHoja = objListaDetalle[i].NumeroHoja;
+                        _objDetalleFactura.NumeroItem = objListaDetalle[i].NumeroItem;
+                        _objDetalleFactura.PrecioPublico = objListaDetalle[i].PrecioPublico == null ? "" : objListaDetalle[i].PrecioPublico.ToString();
+                        _objDetalleFactura.PrecioUnitario = objListaDetalle[i].PrecioUnitario == null ? "" : objListaDetalle[i].PrecioUnitario.ToString();
+                        _objDetalleFactura.Troquel = objListaDetalle[i].Troquel == null ? "" : objListaDetalle[i].Troquel.ToString();
+                        resultado.Add(_objDetalleFactura);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pNumeroFactura);
+            }
+            return resultado;
+        }
+        public static cFactura ObtenerFactura(string pNumeroFactura, string pLoginWeb)
+        {
+            cFactura resultado = null;
+            classTiempo tiempo = new classTiempo("ObtenerFactura");
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                dkInterfaceWeb.Factura objFactura = objServWeb.ObtenerFactura(pNumeroFactura, pLoginWeb);
+                if (objFactura != null)
+                {
+                    resultado = dllFuncionesGenerales.ConvertToFactura(objFactura);
+                    resultado.lista = ObtenerDetalleFactura(pNumeroFactura);
+                }
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pNumeroFactura, pLoginWeb);
+                return null;
+            }
+            finally
+            {
+                tiempo.Parar();
+            }
+            return resultado;
+        }
     }
 }

@@ -121,6 +121,7 @@
     <Compile Include="API\HolaController.cs" />
     <Compile Include="API\ModificarPasswordWEBController.cs" />
     <Compile Include="API\ObtenerCreditoDisponibleController.cs" />
+    <Compile Include="API\ObtenerFacturaController.cs" />
     <Compile Include="API\ObtenerPedidosEntreFechasController.cs" />
     <Compile Include="API\ObtenerReservasDeVacunasPorClienteEntreFechasController.cs" />
     <Compile Include="API\ObtenerTotalReservasDeVacunasPorClienteEntreFechasController.cs" />
@@ -161,6 +162,7 @@
     <Folder Include="Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\AgregarVacunas\" />
+    <Folder Include="Views\ObtenerFactura\" />
     <Folder Include="Views\ObtenerReservasDeVacunasPorClienteEntreFechas\" />
     <Folder Include="Views\ObtenerTotalReservasDeVacunasPorClienteEntreFechas\" />
   </ItemGroup>

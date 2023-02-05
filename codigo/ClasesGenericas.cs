@@ -556,7 +556,10 @@ namespace DKdll.codigo
                         resultado.MontoIvaNoInscripto = pObjFactura.MontoIvaNoInscripto;
                     }
                 }
-                catch { }
+                catch (Exception ex_interno)
+                {
+                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex_interno, DateTime.Now);
+                }
                 resultado.MontoPercepcionDGR = pObjFactura.MontoPercepcionDGR;
                 resultado.MontoTotal = pObjFactura.MontoTotal;
                 resultado.Numero = pObjFactura.Numero;
@@ -569,10 +572,10 @@ namespace DKdll.codigo
                     dkInterfaceWeb.ServiciosWEB objServWebFacturaTrazable = new dkInterfaceWeb.ServiciosWEB();
                     resultado.FacturaTrazable = objServWebFacturaTrazable.FacturaTrazable(pObjFactura.Numero);
                 }
-                catch //(Exception exFacturaTrazable)
+                catch (Exception ex)
                 {
+                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now);
                 }
-
             }
             return resultado;
         }
