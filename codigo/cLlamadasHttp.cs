@@ -53,5 +53,29 @@ namespace DKdll.codigo
         {
             return cLlamadasDLL.ObtenerFactura(pNumeroFactura, pLoginWeb);
         }
+        public static cNotaDeCredito ObtenerNotaDeCredito(string pNumeroNotaDeCredito, string pLoginWeb)
+        {
+            return cLlamadasDLL.ObtenerNotaDeCredito(pNumeroNotaDeCredito, pLoginWeb);
+        }
+        public static cNotaDeDebito ObtenerNotaDeDebito(string pNumeroNotaDeDebito, string pLoginWeb)
+        {
+            return cLlamadasDLL.ObtenerNotaDeDebito(pNumeroNotaDeDebito, pLoginWeb);
+        }
+        public static cResumen ObtenerResumenCerrado(string pNumeroResumen, string pLoginWeb)
+        {
+            return cLlamadasDLL.ObtenerResumenCerrado(pNumeroResumen, pLoginWeb);
+        }
+        public static cObraSocialCliente ObtenerObraSocialCliente(string pNumeroObraSocialCliente, string pLoginWeb)
+        {
+            return cLlamadasDLL.ObtenerObraSocialCliente(pNumeroObraSocialCliente, pLoginWeb);
+        }
+        public static cRecibo ObtenerRecibo(string pNumeroDoc, string pLoginWeb)
+        {
+            return cLlamadasDLL.ObtenerRecibo(pNumeroDoc, pLoginWeb);
+        }
+        public static void ImprimirComprobante(string pTipoComprobante, string pNroComprobante)
+        {
+            cLlamadasDLL.ImprimirComprobante(pTipoComprobante, pNroComprobante);
+        }
     }
 }

@@ -119,11 +119,17 @@
   <ItemGroup>
     <Compile Include="API\AgregarVacunasController.cs" />
     <Compile Include="API\HolaController.cs" />
+    <Compile Include="API\ImprimirComprobanteController.cs" />
     <Compile Include="API\ModificarPasswordWEBController.cs" />
     <Compile Include="API\ObtenerCreditoDisponibleController.cs" />
     <Compile Include="API\ObtenerFacturaController.cs" />
+    <Compile Include="API\ObtenerNotaDeCreditoController.cs" />
+    <Compile Include="API\ObtenerNotaDeDebitoController.cs" />
+    <Compile Include="API\ObtenerObraSocialClienteController.cs" />
     <Compile Include="API\ObtenerPedidosEntreFechasController.cs" />
+    <Compile Include="API\ObtenerReciboController.cs" />
     <Compile Include="API\ObtenerReservasDeVacunasPorClienteEntreFechasController.cs" />
+    <Compile Include="API\ObtenerResumenCerradoController.cs" />
     <Compile Include="API\ObtenerTotalReservasDeVacunasPorClienteEntreFechasController.cs" />
     <Compile Include="API\TomarPedidoConIdCarritoController.cs" />
     <Compile Include="API\TomarPedidoController.cs" />

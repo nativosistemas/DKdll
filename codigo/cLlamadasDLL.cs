@@ -14,7 +14,7 @@ namespace DKdll.codigo
         public static cDllPedido TomarPedidoTelefonista(int pIdCarrito, string pLoginCliente, string pIdSucursal, string pMensajeEnFactura, string pMensajeEnRemito, string pTipoEnvio, List<cDllProductosAndCantidad> pListaProducto, string pLoginTelefonista)
         {
             cDllPedido ResultadoFinal = null;
-            classTiempo tiempo = new classTiempo("TomarPedidoTelefonista");
+            //classTiempo tiempo = new classTiempo("TomarPedidoTelefonista");
             try
             {
                 dkInterfaceWeb.Pedido Resultado;
@@ -61,17 +61,17 @@ namespace DKdll.codigo
                 ResultadoFinal = new cDllPedido();
                 ResultadoFinal.web_Error = ex.Message;
             }
-            finally
-            {
-                tiempo.Parar();
-            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
             return ResultadoFinal;
         }
         public static List<cDllPedidoTransfer> TomarPedidoDeTransfersTelefonista(int pIdCarrito, string pLoginCliente, string pIdSucursal, string pMensajeEnFactura, string pMensajeEnRemito, string pTipoEnvio, List<cDllProductosAndCantidad> pListaProducto, string pLoginTelefonista)
         {
             List<cDllPedidoTransfer> lista = null;
 
-            classTiempo tiempo = new classTiempo("TomarPedidoDeTransfersTelefonista");
+            //classTiempo tiempo = new classTiempo("TomarPedidoDeTransfersTelefonista");
             try
             {
                 lista = new List<cDllPedidoTransfer>();
@@ -129,17 +129,17 @@ namespace DKdll.codigo
                 }
                 lista[0].web_Error = ex.Message;
             }
-            finally
-            {
-                tiempo.Parar();
-            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
 
             return lista;
         }
         public static Decimal ObtenerCreditoDisponible(string pLoginWeb)
         {
             decimal result = 0;
-            classTiempo tiempo = new classTiempo("ObtenerCreditoDisponible");
+            //classTiempo tiempo = new classTiempo("ObtenerCreditoDisponible");
             try
             {
                 dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
@@ -150,16 +150,16 @@ namespace DKdll.codigo
                 DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pLoginWeb);
                 return 0;
             }
-            finally
-            {
-                tiempo.Parar();
-            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
             return result;
         }
         public static cDllPedido TomarPedido(string pLoginCliente, string pIdSucursal, string pMensajeEnFactura, string pMensajeEnRemito, string pTipoEnvio, List<cDllProductosAndCantidad> pListaProducto, bool pIsUrgente)
         {
             cDllPedido ResultadoFinal = null;
-            classTiempo tiempo = new classTiempo("TomarPedido");
+            //classTiempo tiempo = new classTiempo("TomarPedido");
 
             try
             {
@@ -207,16 +207,16 @@ namespace DKdll.codigo
                 ResultadoFinal.web_Error = ex.Message;
                 ResultadoFinal.web_Error_StackTrace = ex.StackTrace;
             }
-            finally
-            {
-                tiempo.Parar();
-            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
             return ResultadoFinal;
         }
         public static List<cDllPedidoTransfer> TomarPedidoDeTransfers(string pLoginCliente, string pIdSucursal, string pMensajeEnFactura, string pMensajeEnRemito, string pTipoEnvio, List<cDllProductosAndCantidad> pListaProducto)
         {
             List<cDllPedidoTransfer> lista = null;
-            classTiempo tiempo = new classTiempo("TomarPedidoDeTransfers");
+            //classTiempo tiempo = new classTiempo("TomarPedidoDeTransfers");
             try
             {
                 lista = new List<cDllPedidoTransfer>();
@@ -275,16 +275,16 @@ namespace DKdll.codigo
                 lista[0].web_Error = ex.Message;
                 lista[0].web_Error_StackTrace = ex.StackTrace;
             }
-            finally
-            {
-                tiempo.Parar();
-            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
             return lista;
         }
         public static List<cDllPedidoTransfer> TomarPedidoDeTransfersConIdCarrito(int pIdCarrito, string pLoginCliente, string pIdSucursal, string pMensajeEnFactura, string pMensajeEnRemito, string pTipoEnvio, List<cDllProductosAndCantidad> pListaProducto)
         {
             List<cDllPedidoTransfer> lista = null;
-            classTiempo tiempo = new classTiempo("TomarPedidoDeTransfersConIdCarrito");
+            //classTiempo tiempo = new classTiempo("TomarPedidoDeTransfersConIdCarrito");
             try
             {
                 lista = new List<cDllPedidoTransfer>();
@@ -343,16 +343,16 @@ namespace DKdll.codigo
                 lista[0].web_Error = ex.Message;
                 lista[0].web_Error_StackTrace = ex.StackTrace;
             }
-            finally
-            {
-                tiempo.Parar();
-            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
             return lista;
         }
         public static cDllPedido TomarPedidoConIdCarrito(int pIdCarrito, string pLoginCliente, string pIdSucursal, string pMensajeEnFactura, string pMensajeEnRemito, string pTipoEnvio, List<cDllProductosAndCantidad> pListaProducto, bool pIsUrgente)
         {
             cDllPedido ResultadoFinal = null;
-            classTiempo tiempo = new classTiempo("TomarPedidoConIdCarrito");
+            //classTiempo tiempo = new classTiempo("TomarPedidoConIdCarrito");
             try
             {
                 dkInterfaceWeb.Pedido Resultado;
@@ -399,10 +399,10 @@ namespace DKdll.codigo
                 ResultadoFinal.web_Error = ex.Message;
                 ResultadoFinal.web_Error_StackTrace = ex.StackTrace;
             }
-            finally
-            {
-                tiempo.Parar();
-            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
             return ResultadoFinal;
         }
         public static bool ValidarExistenciaDeCarritoWebPasado(int pIdCarrito)
@@ -575,7 +575,7 @@ namespace DKdll.codigo
         public static cFactura ObtenerFactura(string pNumeroFactura, string pLoginWeb)
         {
             cFactura resultado = null;
-            classTiempo tiempo = new classTiempo("ObtenerFactura");
+            //classTiempo tiempo = new classTiempo("ObtenerFactura");
             try
             {
                 dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
@@ -591,11 +591,273 @@ namespace DKdll.codigo
                 DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pNumeroFactura, pLoginWeb);
                 return null;
             }
-            finally
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
+            return resultado;
+        }
+        public static cNotaDeCredito ObtenerNotaDeCredito(string pNumeroNotaDeCredito, string pLoginWeb)
+        {
+            cNotaDeCredito resultado = null;
+            //classTiempo tiempo = new classTiempo("ObtenerNotaDeCredito");
+            try
             {
-                tiempo.Parar();
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                dkInterfaceWeb.NotaDeCredito objNotaDeCredito = objServWeb.ObtenerNotaDeCredito(pNumeroNotaDeCredito, pLoginWeb);
+                if (objNotaDeCredito != null)
+                {
+                    resultado = dllFuncionesGenerales.ConvertToNotaDeCredito(objNotaDeCredito);
+                    resultado.lista = ObtenerDetalleNotaDeCredito(pNumeroNotaDeCredito);
+                }
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pNumeroNotaDeCredito, pLoginWeb);
+                return null;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
+            return resultado;
+        }
+        public static List<cNotaDeCreditoDetalle> ObtenerDetalleNotaDeCredito(string pNumeroNotaDeCredito)
+        {
+            try
+            {
+                List<cNotaDeCreditoDetalle> resultado = null;
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                dkInterfaceWeb.NotaDeCreditoItemCOL objListaDetalle = objServWeb.ObtenerItemsDeNotaDeCredito(pNumeroNotaDeCredito);
+                if (objListaDetalle != null)
+                {
+                    resultado = new List<cNotaDeCreditoDetalle>();
+                    for (int i = 1; i <= objListaDetalle.Count(); i++)
+                    {
+                        cNotaDeCreditoDetalle _objDetalleNotaDeCredito = new cNotaDeCreditoDetalle();
+                        _objDetalleNotaDeCredito.Cantidad = objListaDetalle.get_Item(i).Cantidad == null ? "" : objListaDetalle.get_Item(i).Cantidad.ToString();
+                        _objDetalleNotaDeCredito.Descripcion = objListaDetalle.get_Item(i).Descripcion;
+                        _objDetalleNotaDeCredito.Importe = objListaDetalle.get_Item(i).Importe == null ? "" : objListaDetalle.get_Item(i).Importe.ToString();
+                        _objDetalleNotaDeCredito.NumeroHoja = objListaDetalle.get_Item(i).NumeroHoja;
+                        _objDetalleNotaDeCredito.NumeroItem = objListaDetalle.get_Item(i).NumeroItem;
+                        _objDetalleNotaDeCredito.NumeroNotaDeCredito = objListaDetalle.get_Item(i).NumeroNotaDeCredito;
+                        _objDetalleNotaDeCredito.PrecioPublico = objListaDetalle.get_Item(i).PrecioPublico == null ? "" : objListaDetalle.get_Item(i).PrecioPublico.ToString();
+                        _objDetalleNotaDeCredito.PrecioUnitario = objListaDetalle.get_Item(i).PrecioUnitario == null ? "" : objListaDetalle.get_Item(i).PrecioUnitario.ToString();
+                        _objDetalleNotaDeCredito.Troquel = objListaDetalle.get_Item(i).Troquel == null ? "" : objListaDetalle.get_Item(i).Troquel.ToString();
+                        resultado.Add(_objDetalleNotaDeCredito);
+                    }
+                }
+                return resultado;
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pNumeroNotaDeCredito);
+                return null;
+            }
+        }
+        public static cNotaDeDebito ObtenerNotaDeDebito(string pNumeroNotaDeDebito, string pLoginWeb)
+        {
+            cNotaDeDebito resultado = null;
+
+            //classTiempo tiempo = new classTiempo("ObtenerNotaDeDebito");
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                dkInterfaceWeb.NotaDeDebito objNotaDeDebito = objServWeb.ObtenerNotaDeDebito(pNumeroNotaDeDebito, pLoginWeb);
+                if (objNotaDeDebito != null)
+                {
+                    resultado = dllFuncionesGenerales.ConvertToNotaDeDebito(objNotaDeDebito);
+                    resultado.lista = ObtenerDetalleNotaDeDebito(pNumeroNotaDeDebito);
+                }
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pNumeroNotaDeDebito, pLoginWeb);
+                return null;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
+            return resultado;
+        }
+        public static List<cNotaDeDebitoDetalle> ObtenerDetalleNotaDeDebito(string pNumeroNotaDeDebito)
+        {
+            List<cNotaDeDebitoDetalle> resultado = null;
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                dkInterfaceWeb.NotaDeDebitoItemCOL objListaDetalle = objServWeb.ObtenerItemsDeNotaDeDebito(pNumeroNotaDeDebito);
+                if (objListaDetalle != null)
+                {
+                    resultado = new List<cNotaDeDebitoDetalle>();
+                    for (int i = 1; i <= objListaDetalle.Count(); i++)
+                    {
+                        cNotaDeDebitoDetalle _objDetalleNotaDeDebito = new cNotaDeDebitoDetalle();
+                        _objDetalleNotaDeDebito.Descripcion = objListaDetalle.get_Item(i).Descripcion;
+                        _objDetalleNotaDeDebito.Importe = objListaDetalle.get_Item(i).Importe == null ? "" : objListaDetalle.get_Item(i).Importe.ToString();
+                        _objDetalleNotaDeDebito.NumeroHoja = objListaDetalle.get_Item(i).NumeroHoja;
+                        _objDetalleNotaDeDebito.NumeroItem = objListaDetalle.get_Item(i).NumeroItem;
+                        _objDetalleNotaDeDebito.NumeroNotaDeDebito = objListaDetalle.get_Item(i).NumeroNotaDeDebito;
+                        resultado.Add(_objDetalleNotaDeDebito);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pNumeroNotaDeDebito);
             }
             return resultado;
+        }
+        public static cResumen ObtenerResumenCerrado(string pNumeroResumen, string pLoginWeb)
+        {
+            cResumen resultado = null;
+            //classTiempo tiempo = new classTiempo("ObtenerResumenCerrado");
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                dkInterfaceWeb.Resumen objResumen = objServWeb.ObtenerResumenCerrado(pNumeroResumen);
+                if (objResumen != null)
+                {
+                    resultado = dllFuncionesGenerales.ToConvert(objResumen);
+                    dkInterfaceWeb.ResumenItemCOL objItemsResumen = objServWeb.ObtenerItemsDeResumenCerrado(pNumeroResumen);
+                    if (objItemsResumen != null)
+                    {
+                        resultado.lista = new List<cResumenDetalle>();
+                        for (int i = 1; i <= objItemsResumen.Count(); i++)
+                        {
+                            cResumenDetalle objResumenDetalle = dllFuncionesGenerales.ToConvert(objItemsResumen[i]);
+                            resultado.lista.Add(objResumenDetalle);
+                        }
+                    }
+                }
+
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pNumeroResumen, pLoginWeb);
+                return null;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
+            return resultado;
+        }
+        public static cObraSocialCliente ObtenerObraSocialCliente(string pNumeroObraSocialCliente, string pLoginWeb)
+        {
+            cObraSocialCliente resultado = null;
+            //classTiempo tiempo = new classTiempo("ObtenerObraSocialCliente");
+            try
+            {
+                dkInterfaceWeb.ObraSocialCliente objResultado;
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                objResultado = objServWeb.ObtenerObraSocialCliente(pNumeroObraSocialCliente, pLoginWeb);
+                resultado = dllFuncionesGenerales.ToConvert(objResultado);
+                resultado.lista = ObtenerItemsDeObraSocialCliente(pNumeroObraSocialCliente);
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pNumeroObraSocialCliente, pLoginWeb);
+                return null;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
+            return resultado;
+        }
+        public static List<cObraSocialClienteItem> ObtenerItemsDeObraSocialCliente(string pNumeroObraSocialCliente)
+        {
+            List<cObraSocialClienteItem> lista = null;
+            lista = new List<cObraSocialClienteItem>();
+            try
+            {
+                dkInterfaceWeb.ObraSocialClienteItemCOL objResultado;
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                objResultado = objServWeb.ObtenerItemsDeObraSocialCliente(pNumeroObraSocialCliente);
+                if (objResultado != null)
+                    for (int i = 1; i <= objResultado.Count(); i++)
+                        lista.Add(dllFuncionesGenerales.ToConvert((objResultado.get_Item(i))));
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pNumeroObraSocialCliente);
+                return null;
+            }
+            finally
+            {
+            }
+            return lista;
+        }
+        public static cRecibo ObtenerRecibo(string pNumeroDoc, string pLoginWeb)
+        {
+            cRecibo resultado = null;
+            //classTiempo tiempo = new classTiempo("ObtenerRecibo");
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                dkInterfaceWeb.Recibo obj = objServWeb.ObtenerReciboPorNumero(pNumeroDoc, pLoginWeb);
+                if (obj != null)
+                {
+                    resultado = dllFuncionesGenerales.ConvertToRecibo(obj);
+                    resultado.lista = ObtenerDetalleRecibo(pNumeroDoc, pLoginWeb);
+                }
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pNumeroDoc, pLoginWeb);
+                return null;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}            
+            return resultado;
+        }
+        public static List<cReciboDetalle> ObtenerDetalleRecibo(string pNumeroDoc, string pLoginWeb)
+        {
+            List<cReciboDetalle> resultado = null;
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                dkInterfaceWeb.ReciboItemCOLCOL objListaDetalle = objServWeb.ObtenerReciboItemsPorNumeroNuevo(pNumeroDoc, pLoginWeb);
+                if (objListaDetalle != null)
+                {
+                    resultado = new List<cReciboDetalle>();
+                    for (int i = 1; i <= objListaDetalle.Count(); i++)
+                    {
+                        cReciboDetalle _obj = new cReciboDetalle();
+                        dkInterfaceWeb.ReciboItem objItem = objListaDetalle.Item[i];
+                        _obj.NumeroRecibo = objItem.NumeroRecibo;
+                        _obj.NumeroHoja = objItem.NumeroHoja;
+                        _obj.NumeroItem = objItem.NumeroItem;
+                        _obj.Descripcion = objItem.Descripcion;
+                        _obj.Importe = objItem.Importe == null ? "" : objItem.Importe.ToString();
+                        _obj.ID = objItem.ID == null ? "" : objItem.ID.ToString();
+                        resultado.Add(_obj);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pNumeroDoc, pLoginWeb);
+            }
+            return resultado;
+        }
+        public static void ImprimirComprobante(string pTipoComprobante, string pNroComprobante)
+        {
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                objServWeb.ImprimirComprobante(pTipoComprobante, pNroComprobante);
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pTipoComprobante, pNroComprobante);
+            }
         }
     }
 }
