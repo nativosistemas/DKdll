@@ -859,5 +859,50 @@ namespace DKdll.codigo
                 DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pTipoComprobante, pNroComprobante);
             }
         }
+        public static cDllSaldosComposicion ObtenerSaldosPresentacionParaComposicion(string pLoginWeb, DateTime pFecha)
+        {
+            cDllSaldosComposicion resultado = null;
+            //   classTiempo tiempo = new classTiempo("ObtenerSaldosPresentacionParaComposicion");
+            try
+            {
+                resultado = new cDllSaldosComposicion();
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                try
+                {
+                    resultado.SaldoResumenAbierto = objServWeb.ObtenerSaldoResumenAbierto(pLoginWeb);
+                }
+                catch (Exception ex1)
+                {
+                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex1, DateTime.Now, pLoginWeb, pFecha);
+                }
+
+                try
+                {
+                    resultado.SaldoChequeCartera = objServWeb.ObtenerSaldoChequesEnCartera(pLoginWeb);
+                }
+                catch (Exception ex2) { DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex2, DateTime.Now, pLoginWeb, pFecha); }
+                try
+                {
+                    resultado.SaldoCtaCte = objServWeb.ObtenerSaldoCtaCteAFecha(pLoginWeb, pFecha);
+                }
+                catch (Exception ex3) { DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex3, DateTime.Now, pLoginWeb, pFecha); }
+                try
+                {
+                    resultado.SaldoTotal = objServWeb.ObtenerSaldoTotal(pLoginWeb);
+                }
+                catch (Exception ex4) { DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex4, DateTime.Now, pLoginWeb, pFecha); }
+                resultado.isPoseeCuentaResumen = objServWeb.PoseeCuentaResumen(pLoginWeb);
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pLoginWeb, pFecha);
+                return null;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
+            return resultado;
+        }
     }
 }

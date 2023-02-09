@@ -77,5 +77,9 @@ namespace DKdll.codigo
         {
             cLlamadasDLL.ImprimirComprobante(pTipoComprobante, pNroComprobante);
         }
+        public static cDllSaldosComposicion ObtenerSaldosPresentacionParaComposicion(string pLoginWeb, DateTime pFecha)
+        {
+            return cLlamadasDLL.ObtenerSaldosPresentacionParaComposicion( pLoginWeb,  pFecha);
+        }
     }
 }

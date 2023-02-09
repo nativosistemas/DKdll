@@ -7,7 +7,7 @@ using System.Web.Http;
 
 namespace DKdll.API
 {
-    public class ImprimirComprobanteController : ApiController
+    public class ObtenerSaldosPresentacionParaComposicionController : ApiController
     {
         [HttpPost]
         public async System.Threading.Tasks.Task<IHttpActionResult> Create([FromBody] DKbase.Models.DocumentoRequest parameter)
@@ -16,8 +16,7 @@ namespace DKdll.API
             {
                 return BadRequest(ModelState);
             }
-            codigo.cLlamadasHttp.ImprimirComprobante(parameter.documentoTipo, parameter.documentoID);
-            return Ok();
+            return Ok(codigo.cLlamadasHttp.ObtenerSaldosPresentacionParaComposicion(parameter.loginWeb, parameter.fecha));
         }
     }
 }
