@@ -904,5 +904,122 @@ namespace DKdll.codigo
             //}
             return resultado;
         }
+        public static List<cDllChequeRecibido> ObtenerChequesEnCartera(string pLoginWeb)
+        {
+            List<cDllChequeRecibido> resultado = null;
+            //classTiempo tiempo = new classTiempo("ObtenerChequesEnCartera");
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                dkInterfaceWeb.ChequeRecibidoCOL objChequesRecibidos = objServWeb.ObtenerChequesEnCartera(pLoginWeb);
+                if (objChequesRecibidos != null)
+                {
+                    resultado = new List<cDllChequeRecibido>();
+                    for (int i = 1; i <= objChequesRecibidos.Count(); i++)
+                    {
+                        cDllChequeRecibido objCheque = dllFuncionesGenerales.ConvertToChequeRecibido(objChequesRecibidos[i]);
+                        if (objCheque != null)
+                        {
+                            resultado.Add(objCheque);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pLoginWeb);
+                return null;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
+            return resultado;
+        }
+        public static List<cCtaCteMovimiento> ObtenerMovimientosDeCuentaCorriente(bool pIncluyeCancelados, DateTime pDesde, DateTime pHasta, string pLoginWeb)
+        {
+            List<cCtaCteMovimiento> resultado = null;
+            //classTiempo tiempo = new classTiempo("ObtenerMovimientosDeCuentaCorriente");
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                dkInterfaceWeb.CtaCteMovimientoCOL objCtaCteMovimiento = objServWeb.ObtenerMovimientosDeCuentaCorriente(pLoginWeb, pDesde, pHasta, pIncluyeCancelados);
+                if (objCtaCteMovimiento != null)
+                {
+                    resultado = new List<cCtaCteMovimiento>();
+                    if (objCtaCteMovimiento.Count() > 0)
+                    {
+                        DateTime dateValue;
+                        for (int i = 1; i <= objCtaCteMovimiento.Count(); i++)
+                        {
+                            cCtaCteMovimiento obj = new cCtaCteMovimiento();
+                            dkInterfaceWeb.CtaCteMovimiento objItem = objCtaCteMovimiento[i];
+                            obj.Atraso = objItem.Atraso != null ? objItem.Atraso.ToString() : "";
+                            obj.Fecha = DateTime.TryParse(objItem.Fecha.ToString(), out dateValue) ? (DateTime)objItem.Fecha : (DateTime?)null;
+                            obj.FechaToString = obj.Fecha != null ? ((DateTime)obj.Fecha).ToShortDateString() : "";
+                            obj.FechaPago = DateTime.TryParse(objItem.FechaPago.ToString(), out dateValue) ? (DateTime)objItem.FechaPago : (DateTime?)null;
+                            obj.FechaPagoToString = obj.FechaPago != null ? ((DateTime)obj.FechaPago).ToShortDateString() : "";
+                            obj.FechaVencimiento = DateTime.TryParse(objItem.FechaVencimiento.ToString(), out dateValue) ? (DateTime)objItem.FechaVencimiento : (DateTime?)null;
+                            obj.FechaVencimientoToString = obj.FechaVencimiento != null ? ((DateTime)obj.FechaVencimiento).ToShortDateString() : "";
+                            obj.Importe = objItem.Importe;
+                            obj.MedioPago = objItem.MedioPago != null ? objItem.MedioPago.ToString() : "";
+                            obj.NumeroComprobante = objItem.NumeroComprobante != null ? objItem.NumeroComprobante.ToString() : "";
+                            obj.NumeroRecibo = objItem.NumeroRecibo != null ? objItem.NumeroRecibo.ToString() : "";
+                            obj.Pago = objItem.Pago != null ? objItem.Pago.ToString() : ""; ;
+                            obj.Saldo = objItem.Saldo;
+                            obj.Semana = objItem.Semana != null ? objItem.Semana.ToString() : "";
+                            obj.TipoComprobante = dllFuncionesGenerales.ToConvert(objItem.TipoComprobante);
+                            obj.TipoComprobanteToString = dllFuncionesGenerales.ToConvertToString(objItem.TipoComprobante);
+                            resultado.Add(obj);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pIncluyeCancelados, pDesde, pHasta, pLoginWeb);
+                return null;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
+            return resultado;
+        }
+        public static cDllRespuestaResumenAbierto ObtenerResumenAbierto(string pLoginWeb)
+        {
+            cDllRespuestaResumenAbierto resultado = null;
+            //classTiempo tiempo = new classTiempo("ObtenerResumenAbierto");
+            try
+            {
+                resultado = new cDllRespuestaResumenAbierto();
+                resultado.lista = new List<cDllCtaResumenMovimiento>();
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                resultado.isPoseeCuenta = objServWeb.PoseeCuentaResumen(pLoginWeb);
+                resultado.ImporteTotal = objServWeb.ObtenerSaldoResumenAbierto(pLoginWeb);
+                dkInterfaceWeb.CtaResumenMovimientoCOL movCuentaResumen = objServWeb.ObtenerMovimientosDeCuentaResumen(pLoginWeb);
+                for (int i = 1; i <= movCuentaResumen.Count(); i++)
+                {
+                    cDllCtaResumenMovimiento objDllCtaResumenMovimiento = new cDllCtaResumenMovimiento();
+                    objDllCtaResumenMovimiento.Fecha = movCuentaResumen[i].Fecha;
+                    objDllCtaResumenMovimiento.FechaToString = objDllCtaResumenMovimiento.Fecha.ToShortDateString();
+                    objDllCtaResumenMovimiento.Importe = movCuentaResumen[i].Importe;
+                    objDllCtaResumenMovimiento.NumeroComprobante = movCuentaResumen[i].NumeroComprobante;
+                    objDllCtaResumenMovimiento.TipoComprobante = dllFuncionesGenerales.ToConvert(movCuentaResumen[i].Comprobante);
+                    objDllCtaResumenMovimiento.TipoComprobanteToString = dllFuncionesGenerales.ToConvertToString(movCuentaResumen[i].Comprobante);
+                    resultado.lista.Add(objDllCtaResumenMovimiento);
+                }
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pLoginWeb);
+                return null;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
+            return resultado;
+        }
     }
 }

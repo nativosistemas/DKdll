@@ -79,7 +79,19 @@ namespace DKdll.codigo
         }
         public static cDllSaldosComposicion ObtenerSaldosPresentacionParaComposicion(string pLoginWeb, DateTime pFecha)
         {
-            return cLlamadasDLL.ObtenerSaldosPresentacionParaComposicion( pLoginWeb,  pFecha);
+            return cLlamadasDLL.ObtenerSaldosPresentacionParaComposicion(pLoginWeb, pFecha);
+        }
+        public static List<cDllChequeRecibido> ObtenerChequesEnCartera(string pLoginWeb)
+        {
+            return cLlamadasDLL.ObtenerChequesEnCartera(pLoginWeb);
+        }
+        public static List<cCtaCteMovimiento> ObtenerMovimientosDeCuentaCorriente(bool pIncluyeCancelados, DateTime pDesde, DateTime pHasta, string pLoginWeb)
+        {
+            return cLlamadasDLL.ObtenerMovimientosDeCuentaCorriente(pIncluyeCancelados, pDesde, pHasta, pLoginWeb);
+        }
+        public static cDllRespuestaResumenAbierto ObtenerResumenAbierto(string pLoginWeb)
+        {
+            return cLlamadasDLL.ObtenerResumenAbierto(pLoginWeb);
         }
     }
 }

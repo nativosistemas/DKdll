@@ -12,7 +12,7 @@ namespace DKdll.API
     public class ObtenerFacturaController : ApiController
     {
         // GET: ObtenerFactura
-        public async Task<IHttpActionResult>  Index(string pNumeroFactura, string pLoginWeb)
+        public async Task<IHttpActionResult> Index(string pNumeroFactura, string pLoginWeb)
         {
             return Ok(cLlamadasHttp.ObtenerFactura(pNumeroFactura, pLoginWeb));
         }
