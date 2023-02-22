@@ -93,5 +93,17 @@ namespace DKdll.codigo
         {
             return cLlamadasDLL.ObtenerResumenAbierto(pLoginWeb);
         }
+        public static List<cFichaCtaCte> ObtenerMovimientosDeFichaCtaCte(string pLoginWeb, DateTime pFechaDesde, DateTime pFechaHasta)
+        {
+            return cLlamadasDLL.ObtenerMovimientosDeFichaCtaCte( pLoginWeb,  pFechaDesde,  pFechaHasta);
+        }
+        public static decimal? ObtenerCreditoDisponibleSemanal(string pLoginWeb)
+        {
+            return cLlamadasDLL.ObtenerCreditoDisponibleSemanal(pLoginWeb);
+        }
+        public static decimal? ObtenerCreditoDisponibleTotal(string pLoginWeb)
+        {
+            return cLlamadasDLL.ObtenerCreditoDisponibleTotal(pLoginWeb);
+        }
     }
 }

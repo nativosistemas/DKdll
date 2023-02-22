@@ -1021,5 +1021,92 @@ namespace DKdll.codigo
             //}
             return resultado;
         }
+        public static List<cFichaCtaCte> ObtenerMovimientosDeFichaCtaCte(string pLoginWeb, DateTime pFechaDesde, DateTime pFechaHasta)
+        {
+            List<cFichaCtaCte> resultado = new List<cFichaCtaCte>();
+            // classTiempo tiempo = new classTiempo("ObtenerMovimientosDeFichaCtaCte");
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                dkInterfaceWeb.MovimientoFichaCtaCteCOL movFichas = objServWeb.ObtenerMovimientosDeFichaCtaCte(pLoginWeb, pFechaDesde, pFechaHasta);
+                for (int i = 1; i <= movFichas.Count(); i++)
+                {
+                    cFichaCtaCte obj = new cFichaCtaCte();
+                    if (i == 1)
+                    {
+                        obj.Saldo = movFichas[i].Monto;
+                    }
+                    else
+                    {
+                        if (movFichas[i].Monto <= 0)
+                        {
+                            obj.Haber = movFichas[i].Monto;
+                            obj.Saldo = obj.Haber + resultado[i - 2].Saldo;
+                        }
+                        else
+                        {
+                            obj.Debe = movFichas[i].Monto;
+                            obj.Saldo = obj.Debe + resultado[i - 2].Saldo;
+                        }
+                    }
+                    obj.Fecha = movFichas[i].FechaMovimiento;
+                    obj.FechaToString = movFichas[i].FechaMovimiento.ToShortDateString();
+                    obj.FechaVencimiento = movFichas[i].FechaVencimiento == null ? (DateTime?)null : (DateTime)movFichas[i].FechaVencimiento;
+                    obj.FechaVencimientoToString = movFichas[i].FechaVencimiento == null ? string.Empty : ((DateTime)movFichas[i].FechaVencimiento).ToShortDateString();
+                    obj.Comprobante = movFichas[i].NumeroComprobante;
+                    obj.TipoComprobante = dllFuncionesGenerales.ToConvert(movFichas[i].TipoComprobante);
+                    obj.TipoComprobanteToString = dllFuncionesGenerales.ToConvertToString(movFichas[i].TipoComprobante);
+                    obj.Motivo = movFichas[i].Motivo == null ? string.Empty : movFichas[i].Motivo.ToString();
+                    resultado.Add(obj);
+                }
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pLoginWeb, pFechaDesde, pFechaHasta);
+                return null;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}          
+            return resultado;
+        }
+        public static decimal? ObtenerCreditoDisponibleSemanal(string pLoginWeb)
+        {
+            decimal? result = null;
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                var objResultado = objServWeb.ObtenerCreditoDisponibleSemanal(pLoginWeb);
+                if (objResultado != null)
+                {
+                    result = Convert.ToDecimal(objResultado);
+                }
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pLoginWeb);
+                return null;
+            }
+
+            return result;
+        }
+        public static decimal? ObtenerCreditoDisponibleTotal(string pLoginWeb)
+        {
+            decimal? result = null;
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                result = objServWeb.ObtenerCreditoDisponibleTotal(pLoginWeb);
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pLoginWeb);
+                return null;
+            }
+            return result;
+        }
     }
 }

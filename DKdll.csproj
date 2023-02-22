@@ -123,8 +123,11 @@
     <Compile Include="API\ModificarPasswordWEBController.cs" />
     <Compile Include="API\ObtenerChequesEnCarteraController.cs" />
     <Compile Include="API\ObtenerCreditoDisponibleController.cs" />
+    <Compile Include="API\ObtenerCreditoDisponibleSemanalController.cs" />
+    <Compile Include="API\ObtenerCreditoDisponibleTotalController.cs" />
     <Compile Include="API\ObtenerFacturaController.cs" />
     <Compile Include="API\ObtenerMovimientosDeCuentaCorrienteController.cs" />
+    <Compile Include="API\ObtenerMovimientosDeFichaCtaCteController.cs" />
     <Compile Include="API\ObtenerNotaDeCreditoController.cs" />
     <Compile Include="API\ObtenerNotaDeDebitoController.cs" />
     <Compile Include="API\ObtenerObraSocialClienteController.cs" />
