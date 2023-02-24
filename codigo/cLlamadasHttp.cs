@@ -105,5 +105,21 @@ namespace DKdll.codigo
         {
             return cLlamadasDLL.ObtenerCreditoDisponibleTotal(pLoginWeb);
         }
+        public static List<string> ObtenerTiposDeComprobantesAMostrar(string pIdentificadorCliente)
+        {
+            return cLlamadasDLL.ObtenerTiposDeComprobantesAMostrar(pIdentificadorCliente);
+        }
+        public static List<cPlan> ObtenerPlanesDeObrasSociales()
+        {
+            return cLlamadasDLL.ObtenerPlanesDeObrasSociales();
+        }
+        public static List<cCbteParaImprimir> ObtenerComprobantesAImprimirEnBaseAResumen(string pNumeroResumen)
+        {
+            return cLlamadasDLL.ObtenerComprobantesAImprimirEnBaseAResumen( pNumeroResumen);
+        }
+        public static List<cResumen> ObtenerUltimos10ResumenesDePuntoDeVenta(string pLoginWeb)
+        {
+            return cLlamadasDLL.ObtenerUltimos10ResumenesDePuntoDeVenta(pLoginWeb);
+        }
     }
 }

@@ -1108,5 +1108,102 @@ namespace DKdll.codigo
             }
             return result;
         }
+        public static List<string> ObtenerTiposDeComprobantesAMostrar(string pIdentificadorCliente)
+        {
+            List<string> resultado = null;
+            dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+            resultado = new List<string>();
+            try
+            {
+                VBA._Collection lista = objServWeb.ObtenerTiposDeComprobantesAMostrar(pIdentificadorCliente);
+                foreach (var item in lista)
+                {
+                    resultado.Add((string)item);
+                }
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pIdentificadorCliente);
+                resultado = null;
+            }
+            return resultado;
+        }
+        public static List<cPlan> ObtenerPlanesDeObrasSociales()
+        {
+            List<cPlan> lista = null;
+            //  classTiempo tiempo = new classTiempo("ObtenerPlanesDeObrasSociales");
+            try
+            {
+                lista = new List<cPlan>();
+                dkInterfaceWeb.PlanCOL objResultado;
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                objResultado = objServWeb.ObtenerPlanesDeObrasSociales();
+                if (objResultado != null)
+                    for (int i = 1; i <= objResultado.Count(); i++)
+                        lista.Add(dllFuncionesGenerales.ToConvert((objResultado[i])));
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now);
+                return null;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
+            return lista;
+        }
+        public static List<cCbteParaImprimir> ObtenerComprobantesAImprimirEnBaseAResumen(string pNumeroResumen)
+        {
+            List<cCbteParaImprimir> lista = null;
+
+            lista = new List<cCbteParaImprimir>();
+            try
+            {
+                dkInterfaceWeb.CbteParaImprimirCOL objResultado;
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                objResultado = objServWeb.ObtenerComprobantesAImprimirEnBaseAResumen(pNumeroResumen);
+                if (objResultado != null)
+                {
+                    for (int i = 1; i <= objResultado.Count(); i++)
+                        lista.Add(dllFuncionesGenerales.ToConvert((objResultado[i])));
+                }
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pNumeroResumen);
+                return null;
+            }
+
+            return lista;
+        }
+        public static List<cResumen> ObtenerUltimos10ResumenesDePuntoDeVenta(string pLoginWeb)
+        {
+            List<cResumen> lista = null;
+                lista = new List<cResumen>();
+                try
+                {
+                    dkInterfaceWeb.ResumenCOL objResultado;
+                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                    objResultado = objServWeb.ObtenerUltimos10ResumenesDePuntoDeVenta(pLoginWeb);
+                    if (objResultado != null)
+                    {
+                        for (int i = 1; i <= objResultado.Count(); i++)
+                            lista.Add(dllFuncionesGenerales.ToConvert((objResultado[i])));
+                    }
+                    else
+                        return null;
+                }
+                catch (Exception ex)
+                {
+                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pLoginWeb);
+                    return null;
+                }
+            return lista;
+        }
     }
 }

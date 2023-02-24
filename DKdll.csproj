@@ -122,6 +122,7 @@
     <Compile Include="API\ImprimirComprobanteController.cs" />
     <Compile Include="API\ModificarPasswordWEBController.cs" />
     <Compile Include="API\ObtenerChequesEnCarteraController.cs" />
+    <Compile Include="API\ObtenerComprobantesAImprimirEnBaseAResumenController.cs" />
     <Compile Include="API\ObtenerCreditoDisponibleController.cs" />
     <Compile Include="API\ObtenerCreditoDisponibleSemanalController.cs" />
     <Compile Include="API\ObtenerCreditoDisponibleTotalController.cs" />
@@ -132,12 +133,15 @@
     <Compile Include="API\ObtenerNotaDeDebitoController.cs" />
     <Compile Include="API\ObtenerObraSocialClienteController.cs" />
     <Compile Include="API\ObtenerPedidosEntreFechasController.cs" />
+    <Compile Include="API\ObtenerPlanesDeObrasSocialesController.cs" />
     <Compile Include="API\ObtenerReciboController.cs" />
     <Compile Include="API\ObtenerReservasDeVacunasPorClienteEntreFechasController.cs" />
     <Compile Include="API\ObtenerResumenAbiertoController.cs" />
     <Compile Include="API\ObtenerResumenCerradoController.cs" />
     <Compile Include="API\ObtenerSaldosPresentacionParaComposicionController.cs" />
+    <Compile Include="API\ObtenerTiposDeComprobantesAMostrarController.cs" />
     <Compile Include="API\ObtenerTotalReservasDeVacunasPorClienteEntreFechasController.cs" />
+    <Compile Include="API\ObtenerUltimos10ResumenesDePuntoDeVentaController.cs" />
     <Compile Include="API\TomarPedidoConIdCarritoController.cs" />
     <Compile Include="API\TomarPedidoController.cs" />
     <Compile Include="API\TomarPedidoDeTransfersConIdCarritoController.cs" />
