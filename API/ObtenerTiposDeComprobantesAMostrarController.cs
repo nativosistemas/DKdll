@@ -16,7 +16,7 @@ namespace DKdll.API
             {
                 return BadRequest(ModelState);
             }
-            return Ok(codigo.cLlamadasHttp.ObtenerTiposDeComprobantesAMostrar(parameter.documentoID));
+            return Ok(codigo.cLlamadasHttp.ObtenerTiposDeComprobantesAMostrar(parameter.loginWeb));
         }
     }
 }
