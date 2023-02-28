@@ -121,5 +121,21 @@ namespace DKdll.codigo
         {
             return cLlamadasDLL.ObtenerUltimos10ResumenesDePuntoDeVenta(pLoginWeb);
         }
+        public static List<cPlanillaObSoc> ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioMes(string NombrePlan, string LoginWeb, int Anio, int Mes)
+        {
+            return cLlamadasDLL.ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioMes( NombrePlan,  LoginWeb,  Anio,  Mes);
+        }
+        public static List<cPlanillaObSoc> ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioMesQuincena(string NombrePlan, string LoginWeb, int Anio, int Mes, int Quincena)
+        {
+            return cLlamadasDLL.ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioMesQuincena(NombrePlan, LoginWeb, Anio, Mes, Quincena);
+        }
+        public static List<cPlanillaObSoc> ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioSemana(string NombrePlan, string LoginWeb, int Anio, int Semana)
+        {
+            return cLlamadasDLL.ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioSemana(NombrePlan, LoginWeb, Anio, Semana);
+        }
+        public static List<cConsObraSocial> ObtenerComprobantesObrasSocialesDePuntoDeVentaEntreFechas(string pLoginWeb, string pPlan, DateTime pFechaDesde, DateTime pFechaHasta)
+        {
+            return cLlamadasDLL.ObtenerComprobantesObrasSocialesDePuntoDeVentaEntreFechas(pLoginWeb,  pPlan,  pFechaDesde,  pFechaHasta);
+        }
     }
 }

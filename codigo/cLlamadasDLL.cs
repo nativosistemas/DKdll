@@ -1184,12 +1184,122 @@ namespace DKdll.codigo
         public static List<cResumen> ObtenerUltimos10ResumenesDePuntoDeVenta(string pLoginWeb)
         {
             List<cResumen> lista = null;
-                lista = new List<cResumen>();
+            lista = new List<cResumen>();
+            try
+            {
+                dkInterfaceWeb.ResumenCOL objResultado;
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                objResultado = objServWeb.ObtenerUltimos10ResumenesDePuntoDeVenta(pLoginWeb);
+                if (objResultado != null)
+                {
+                    for (int i = 1; i <= objResultado.Count(); i++)
+                        lista.Add(dllFuncionesGenerales.ToConvert((objResultado[i])));
+                }
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pLoginWeb);
+                return null;
+            }
+            return lista;
+        }
+        public static List<cPlanillaObSoc> ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioMes(string NombrePlan, string LoginWeb, int Anio, int Mes)
+        {
+            List<cPlanillaObSoc> lista = null;
+            //classTiempo tiempo = new classTiempo("ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioMes");
+            try
+            {
+                lista = new List<cPlanillaObSoc>();
+                dkInterfaceWeb.PlanillaObSocCOL objResultado;
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                objResultado = objServWeb.ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioMes(NombrePlan, LoginWeb, Anio, Mes);
+                if (objResultado != null)
+                    for (int i = 1; i <= objResultado.Count(); i++)
+                        lista.Add(dllFuncionesGenerales.ToConvert((objResultado.get_Item(i))));
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NombrePlan, LoginWeb, Anio, Mes);
+                return null;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}            
+            return lista;
+        }
+        public static List<cPlanillaObSoc> ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioMesQuincena(string NombrePlan, string LoginWeb, int Anio, int Mes, int Quincena)
+        {
+
+            List<cPlanillaObSoc> lista = null;
+
+                //classTiempo tiempo = new classTiempo("ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioMesQuincena");
                 try
                 {
-                    dkInterfaceWeb.ResumenCOL objResultado;
+                    lista = new List<cPlanillaObSoc>();
+                    dkInterfaceWeb.PlanillaObSocCOL objResultado;
                     dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
-                    objResultado = objServWeb.ObtenerUltimos10ResumenesDePuntoDeVenta(pLoginWeb);
+                    objResultado = objServWeb.ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioMesQuincena(NombrePlan, LoginWeb, Anio, Mes, Quincena);
+                    if (objResultado != null)
+                        for (int i = 1; i <= objResultado.Count(); i++)
+                            lista.Add(dllFuncionesGenerales.ToConvert((objResultado.get_Item(i))));
+                    else
+                        return null;
+                }
+                catch (Exception ex)
+                {
+                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NombrePlan, LoginWeb, Anio, Mes, Quincena);
+                    return null;
+                }
+                //finally
+                //{
+                //    tiempo.Parar();
+                //}
+            
+            return lista;
+        }
+        public static List<cPlanillaObSoc> ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioSemana(string NombrePlan, string LoginWeb, int Anio, int Semana)
+        {
+
+            List<cPlanillaObSoc> lista = null;
+                //classTiempo tiempo = new classTiempo("ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioSemana");
+                try
+                {
+                    lista = new List<cPlanillaObSoc>();
+                    dkInterfaceWeb.PlanillaObSocCOL objResultado;
+                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                    objResultado = objServWeb.ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioSemana(NombrePlan, LoginWeb, Anio, Semana);
+                    if (objResultado != null)
+                        for (int i = 1; i <= objResultado.Count(); i++)
+                            lista.Add(dllFuncionesGenerales.ToConvert((objResultado.get_Item(i))));
+                    else
+                        return null;
+                }
+                catch (Exception ex)
+                {
+                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NombrePlan, LoginWeb, Anio, Semana);
+                    return null;
+                }
+                //finally
+                //{
+                //    tiempo.Parar();
+                //}
+            return lista;
+        }
+        public static List<cConsObraSocial> ObtenerComprobantesObrasSocialesDePuntoDeVentaEntreFechas(string pLoginWeb, string pPlan, DateTime pFechaDesde, DateTime pFechaHasta)
+        {
+            List<cConsObraSocial> lista = null;
+                lista = new List<cConsObraSocial>();
+                try
+                {
+                    dkInterfaceWeb.ConsObraSocialCOL objResultado;
+                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                    objResultado = objServWeb.ObtenerComprobantesObrasSocialesDePuntoDeVentaEntreFechas(pLoginWeb, pPlan, pFechaDesde, pFechaHasta);
+
                     if (objResultado != null)
                     {
                         for (int i = 1; i <= objResultado.Count(); i++)
@@ -1200,7 +1310,7 @@ namespace DKdll.codigo
                 }
                 catch (Exception ex)
                 {
-                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pLoginWeb);
+                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pLoginWeb, pPlan, pFechaDesde, pFechaHasta);
                     return null;
                 }
             return lista;

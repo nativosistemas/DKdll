@@ -123,6 +123,7 @@
     <Compile Include="API\ModificarPasswordWEBController.cs" />
     <Compile Include="API\ObtenerChequesEnCarteraController.cs" />
     <Compile Include="API\ObtenerComprobantesAImprimirEnBaseAResumenController.cs" />
+    <Compile Include="API\ObtenerComprobantesObrasSocialesDePuntoDeVentaEntreFechasController.cs" />
     <Compile Include="API\ObtenerCreditoDisponibleController.cs" />
     <Compile Include="API\ObtenerCreditoDisponibleSemanalController.cs" />
     <Compile Include="API\ObtenerCreditoDisponibleTotalController.cs" />
@@ -134,6 +135,9 @@
     <Compile Include="API\ObtenerObraSocialClienteController.cs" />
     <Compile Include="API\ObtenerPedidosEntreFechasController.cs" />
     <Compile Include="API\ObtenerPlanesDeObrasSocialesController.cs" />
+    <Compile Include="API\ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioMesController.cs" />
+    <Compile Include="API\ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioMesQuincenaController.cs" />
+    <Compile Include="API\ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioSemanaController.cs" />
     <Compile Include="API\ObtenerReciboController.cs" />
     <Compile Include="API\ObtenerReservasDeVacunasPorClienteEntreFechasController.cs" />
     <Compile Include="API\ObtenerResumenAbiertoController.cs" />
