@@ -137,5 +137,13 @@ namespace DKdll.codigo
         {
             return cLlamadasDLL.ObtenerComprobantesObrasSocialesDePuntoDeVentaEntreFechas(pLoginWeb,  pPlan,  pFechaDesde,  pFechaHasta);
         }
+        public static List<cComprobantesDiscriminadosDePuntoDeVenta> ObtenerComprobantesDiscriminadosDePuntoDeVentaEntreFechas(string pIdentificadorCliente, DateTime pFechaDesde, DateTime pFechaHasta)
+        {
+            return cLlamadasDLL.ObtenerComprobantesDiscriminadosDePuntoDeVentaEntreFechas( pIdentificadorCliente,  pFechaDesde,  pFechaHasta);
+        }
+        public static double ObtenerSaldoFinalADiciembrePorCliente(string LoginWeb)
+        {
+            return cLlamadasDLL.ObtenerSaldoFinalADiciembrePorCliente(LoginWeb);
+        }
     }
 }
