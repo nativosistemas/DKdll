@@ -145,5 +145,9 @@ namespace DKdll.codigo
         {
             return cLlamadasDLL.ObtenerSaldoFinalADiciembrePorCliente(LoginWeb);
         }
+        public static List<cVencimientoResumen> ObtenerVencimientosResumenPorFecha(string NumeroComprobante, DateTime FechaVencimiento)
+        {
+            return cLlamadasDLL.ObtenerVencimientosResumenPorFecha( NumeroComprobante, FechaVencimiento);
+        }
     }
 }

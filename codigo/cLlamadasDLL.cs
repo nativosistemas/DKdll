@@ -1367,5 +1367,27 @@ namespace DKdll.codigo
             }
             return resultado;
         }
+        public static List<cVencimientoResumen> ObtenerVencimientosResumenPorFecha(string NumeroComprobante, DateTime FechaVencimiento)
+        {
+            List<cVencimientoResumen> resultado = new List<cVencimientoResumen>();
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                dkInterfaceWeb.VtoResumenPorFechaCOL cVtos = objServWeb.ObtenerVencimientosResumenPorFecha(NumeroComprobante, FechaVencimiento);
+                if (cVtos != null)
+                {
+                    for (int i = 1; i <= cVtos.Count(); i++)
+                    {
+                        cVencimientoResumen obj = dllFuncionesGenerales.ToConvert(cVtos[i]);
+                        resultado.Add(obj);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NumeroComprobante, FechaVencimiento);
+            }
+            return resultado;
+        }
     }
 }

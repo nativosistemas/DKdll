@@ -148,6 +148,7 @@
     <Compile Include="API\ObtenerTiposDeComprobantesAMostrarController.cs" />
     <Compile Include="API\ObtenerTotalReservasDeVacunasPorClienteEntreFechasController.cs" />
     <Compile Include="API\ObtenerUltimos10ResumenesDePuntoDeVentaController.cs" />
+    <Compile Include="API\ObtenerVencimientosResumenPorFechaController.cs" />
     <Compile Include="API\TomarPedidoConIdCarritoController.cs" />
     <Compile Include="API\TomarPedidoController.cs" />
     <Compile Include="API\TomarPedidoDeTransfersConIdCarritoController.cs" />
