@@ -121,6 +121,7 @@
     <Compile Include="API\HolaController.cs" />
     <Compile Include="API\ImprimirComprobanteController.cs" />
     <Compile Include="API\ModificarPasswordWEBController.cs" />
+    <Compile Include="API\ObtenerCantidadSolicitadaDevolucionPorProductoFacturaYClienteController.cs" />
     <Compile Include="API\ObtenerChequesEnCarteraController.cs" />
     <Compile Include="API\ObtenerComprobantesAImprimirEnBaseAResumenController.cs" />
     <Compile Include="API\ObtenerComprobantesDiscriminadosDePuntoDeVentaEntreFechasController.cs" />
@@ -140,6 +141,7 @@
     <Compile Include="API\ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioMesQuincenaController.cs" />
     <Compile Include="API\ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioSemanaController.cs" />
     <Compile Include="API\ObtenerReciboController.cs" />
+    <Compile Include="API\ObtenerReclamosFacturadoNoEnviadoPorClienteController.cs" />
     <Compile Include="API\ObtenerReservasDeVacunasPorClienteEntreFechasController.cs" />
     <Compile Include="API\ObtenerResumenAbiertoController.cs" />
     <Compile Include="API\ObtenerResumenCerradoController.cs" />

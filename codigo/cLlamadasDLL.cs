@@ -1389,5 +1389,53 @@ namespace DKdll.codigo
             }
             return resultado;
         }
+        public static List<cDevolucionItemPrecarga> ObtenerReclamosFacturadoNoEnviadoPorCliente(string LoginWeb)
+        {
+            List<cDevolucionItemPrecarga> lista = null;
+            // classTiempo tiempo = new classTiempo("ObtenerReclamosFacturadoNoEnviadoPorCliente");
+            try
+            {
+                lista = new List<cDevolucionItemPrecarga>();
+                dkInterfaceWeb.SolicitudDevClienteCOL objResultado;
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                objResultado = objServWeb.ObtenerReclamosFacturadoNoEnviadoPorCliente(LoginWeb);
+                if (objResultado != null)
+                    for (int i = 1; i <= objResultado.Count(); i++)
+                        lista.Add(dllFuncionesGenerales.ConvertToItemSolicitudDevCliente(objResultado[i]));
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, LoginWeb);
+                return null;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
+            return lista;
+        }
+        public static long ObtenerCantidadSolicitadaDevolucionPorProductoFacturaYCliente(string NombreProducto, string NumeroFactura, string LoginWeb)
+        {
+            long resultado = 0;
+            // classTiempo tiempo = new classTiempo("ObtenerCantidadSolicitadaDevolucionPorProductoFacturaYCliente");
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                resultado = objServWeb.ObtenerCantidadSolicitadaDevolucionPorProductoFacturaYCliente(NombreProducto, NumeroFactura, LoginWeb);
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NombreProducto, NumeroFactura, LoginWeb);
+                return 0;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
+            return resultado;
+        }
+
     }
 }

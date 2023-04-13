@@ -95,7 +95,7 @@ namespace DKdll.codigo
         }
         public static List<cFichaCtaCte> ObtenerMovimientosDeFichaCtaCte(string pLoginWeb, DateTime pFechaDesde, DateTime pFechaHasta)
         {
-            return cLlamadasDLL.ObtenerMovimientosDeFichaCtaCte( pLoginWeb,  pFechaDesde,  pFechaHasta);
+            return cLlamadasDLL.ObtenerMovimientosDeFichaCtaCte(pLoginWeb, pFechaDesde, pFechaHasta);
         }
         public static decimal? ObtenerCreditoDisponibleSemanal(string pLoginWeb)
         {
@@ -115,7 +115,7 @@ namespace DKdll.codigo
         }
         public static List<cCbteParaImprimir> ObtenerComprobantesAImprimirEnBaseAResumen(string pNumeroResumen)
         {
-            return cLlamadasDLL.ObtenerComprobantesAImprimirEnBaseAResumen( pNumeroResumen);
+            return cLlamadasDLL.ObtenerComprobantesAImprimirEnBaseAResumen(pNumeroResumen);
         }
         public static List<cResumen> ObtenerUltimos10ResumenesDePuntoDeVenta(string pLoginWeb)
         {
@@ -123,7 +123,7 @@ namespace DKdll.codigo
         }
         public static List<cPlanillaObSoc> ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioMes(string NombrePlan, string LoginWeb, int Anio, int Mes)
         {
-            return cLlamadasDLL.ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioMes( NombrePlan,  LoginWeb,  Anio,  Mes);
+            return cLlamadasDLL.ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioMes(NombrePlan, LoginWeb, Anio, Mes);
         }
         public static List<cPlanillaObSoc> ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioMesQuincena(string NombrePlan, string LoginWeb, int Anio, int Mes, int Quincena)
         {
@@ -135,11 +135,11 @@ namespace DKdll.codigo
         }
         public static List<cConsObraSocial> ObtenerComprobantesObrasSocialesDePuntoDeVentaEntreFechas(string pLoginWeb, string pPlan, DateTime pFechaDesde, DateTime pFechaHasta)
         {
-            return cLlamadasDLL.ObtenerComprobantesObrasSocialesDePuntoDeVentaEntreFechas(pLoginWeb,  pPlan,  pFechaDesde,  pFechaHasta);
+            return cLlamadasDLL.ObtenerComprobantesObrasSocialesDePuntoDeVentaEntreFechas(pLoginWeb, pPlan, pFechaDesde, pFechaHasta);
         }
         public static List<cComprobantesDiscriminadosDePuntoDeVenta> ObtenerComprobantesDiscriminadosDePuntoDeVentaEntreFechas(string pIdentificadorCliente, DateTime pFechaDesde, DateTime pFechaHasta)
         {
-            return cLlamadasDLL.ObtenerComprobantesDiscriminadosDePuntoDeVentaEntreFechas( pIdentificadorCliente,  pFechaDesde,  pFechaHasta);
+            return cLlamadasDLL.ObtenerComprobantesDiscriminadosDePuntoDeVentaEntreFechas(pIdentificadorCliente, pFechaDesde, pFechaHasta);
         }
         public static double ObtenerSaldoFinalADiciembrePorCliente(string LoginWeb)
         {
@@ -147,7 +147,15 @@ namespace DKdll.codigo
         }
         public static List<cVencimientoResumen> ObtenerVencimientosResumenPorFecha(string NumeroComprobante, DateTime FechaVencimiento)
         {
-            return cLlamadasDLL.ObtenerVencimientosResumenPorFecha( NumeroComprobante, FechaVencimiento);
+            return cLlamadasDLL.ObtenerVencimientosResumenPorFecha(NumeroComprobante, FechaVencimiento);
+        }
+        public static List<cDevolucionItemPrecarga> ObtenerReclamosFacturadoNoEnviadoPorCliente(string LoginWeb)
+        {
+            return cLlamadasDLL.ObtenerReclamosFacturadoNoEnviadoPorCliente(LoginWeb);
+        }
+        public static long ObtenerCantidadSolicitadaDevolucionPorProductoFacturaYCliente(string NombreProducto, string NumeroFactura, string LoginWeb)
+        {
+            return cLlamadasDLL.ObtenerCantidadSolicitadaDevolucionPorProductoFacturaYCliente(NombreProducto, NumeroFactura, LoginWeb);
         }
     }
 }
