@@ -157,5 +157,13 @@ namespace DKdll.codigo
         {
             return cLlamadasDLL.ObtenerCantidadSolicitadaDevolucionPorProductoFacturaYCliente(NombreProducto, NumeroFactura, LoginWeb);
         }
+        public static bool EsFacturaConDevolucionesEnProceso(string NumeroFactura, string LoginWeb)
+        {
+            return cLlamadasDLL.EsFacturaConDevolucionesEnProceso( NumeroFactura, LoginWeb);
+        }
+        public static List<cFactura> ObtenerFacturasPorUltimosNumeros(string NumeroFactura, string LoginWeb)
+        {
+            return cLlamadasDLL.ObtenerFacturasPorUltimosNumeros(NumeroFactura, LoginWeb);
+        }
     }
 }

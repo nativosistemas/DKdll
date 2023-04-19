@@ -1436,6 +1436,50 @@ namespace DKdll.codigo
             //}
             return resultado;
         }
-
+        public static bool EsFacturaConDevolucionesEnProceso(string NumeroFactura, string LoginWeb)
+        {
+            // classTiempo tiempo = new classTiempo("EsFacturaConDevolucionesEnProceso");
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                return objServWeb.EsFacturaConDevolucionesEnProceso(NumeroFactura, LoginWeb);
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NumeroFactura, LoginWeb);
+                return false;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
+        }
+        public static List<cFactura> ObtenerFacturasPorUltimosNumeros(string NumeroFactura, string LoginWeb)
+        {
+            List<cFactura> lista = null;
+            // classTiempo tiempo = new classTiempo("ObtenerFacturasPorUltimosNumeros");
+            try
+            {
+                lista = new List<cFactura>();
+                dkInterfaceWeb.FacturaCOL objResultado;
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                objResultado = objServWeb.ObtenerFacturasPorUltimosNumeros(NumeroFactura, LoginWeb);
+                if (objResultado != null)
+                    for (int i = 1; i <= objResultado.Count(); i++)
+                        lista.Add(dllFuncionesGenerales.ConvertToFactura(objResultado[i]));
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NumeroFactura, LoginWeb);
+                return null;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
+            return lista;
+        }
     }
 }

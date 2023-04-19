@@ -118,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="API\AgregarVacunasController.cs" />
+    <Compile Include="API\EsFacturaConDevolucionesEnProcesoController.cs" />
     <Compile Include="API\HolaController.cs" />
     <Compile Include="API\ImprimirComprobanteController.cs" />
     <Compile Include="API\ModificarPasswordWEBController.cs" />
@@ -130,6 +131,7 @@
     <Compile Include="API\ObtenerCreditoDisponibleSemanalController.cs" />
     <Compile Include="API\ObtenerCreditoDisponibleTotalController.cs" />
     <Compile Include="API\ObtenerFacturaController.cs" />
+    <Compile Include="API\ObtenerFacturasPorUltimosNumerosController.cs" />
     <Compile Include="API\ObtenerMovimientosDeCuentaCorrienteController.cs" />
     <Compile Include="API\ObtenerMovimientosDeFichaCtaCteController.cs" />
     <Compile Include="API\ObtenerNotaDeCreditoController.cs" />
