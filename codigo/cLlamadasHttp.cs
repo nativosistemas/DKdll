@@ -165,5 +165,9 @@ namespace DKdll.codigo
         {
             return cLlamadasDLL.ObtenerFacturasPorUltimosNumeros(NumeroFactura, LoginWeb);
         }
+        public static string AgregarSolicitudDevolucionCliente(List<cDevolucionItemPrecarga> colSDC, string LoginWeb)
+        {
+            return cLlamadasDLL.AgregarSolicitudDevolucionCliente(colSDC, LoginWeb);
+        }
     }
 }
