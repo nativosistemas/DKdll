@@ -1509,5 +1509,33 @@ namespace DKdll.codigo
             //}            
             return resultado;
         }
+        public static string AgregarReclamoFacturadoNoEnviado(List<cDevolucionItemPrecarga> colSDC, string LoginWeb)
+        {
+            string resultado = null;
+            //classTiempo tiempo = new classTiempo("AgregarReclamoFacturadoNoEnviado");
+            try
+            {
+                dkInterfaceWeb.SolicitudDevClienteCOL colInput;
+                colInput = new dkInterfaceWeb.SolicitudDevClienteCOL();
+                if (colSDC != null)
+                    for (int i = 0; i < colSDC.Count(); i++)
+                        colInput.Add(dllFuncionesGenerales.ConvertFromItemSolicitudDevCliente(colSDC[i]));
+                else
+                    return null;
+
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                resultado = objServWeb.AgregarReclamoFacturadoNoEnviadoDesdeLaWeb(colInput, LoginWeb);
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, colSDC, LoginWeb);
+                return null;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}            
+            return resultado;
+        }
     }
 }

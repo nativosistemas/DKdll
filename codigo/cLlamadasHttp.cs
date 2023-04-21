@@ -169,5 +169,9 @@ namespace DKdll.codigo
         {
             return cLlamadasDLL.AgregarSolicitudDevolucionCliente(colSDC, LoginWeb);
         }
+        public static string AgregarReclamoFacturadoNoEnviado(List<cDevolucionItemPrecarga> colSDC, string LoginWeb)
+        {
+            return cLlamadasDLL.AgregarReclamoFacturadoNoEnviado(colSDC, LoginWeb);
+        }
     }
 }
