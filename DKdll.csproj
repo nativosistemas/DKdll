@@ -138,6 +138,7 @@
     <Compile Include="API\ObtenerMovimientosDeFichaCtaCteController.cs" />
     <Compile Include="API\ObtenerNotaDeCreditoController.cs" />
     <Compile Include="API\ObtenerNotaDeDebitoController.cs" />
+    <Compile Include="API\ObtenerNumerosLoteDeProductoDeFacturaProveedorLogLotesConCadenaController.cs" />
     <Compile Include="API\ObtenerObraSocialClienteController.cs" />
     <Compile Include="API\ObtenerPedidosEntreFechasController.cs" />
     <Compile Include="API\ObtenerPlanesDeObrasSocialesController.cs" />
@@ -146,11 +147,13 @@
     <Compile Include="API\ObtenerPlanillasObraSocialClientesDeObraSocialPorAnioSemanaController.cs" />
     <Compile Include="API\ObtenerReciboController.cs" />
     <Compile Include="API\ObtenerReclamosFacturadoNoEnviadoPorClienteController.cs" />
+    <Compile Include="API\ObtenerReclamosFacturadoNoEnviadoPorClientePorNumeroController.cs" />
     <Compile Include="API\ObtenerReservasDeVacunasPorClienteEntreFechasController.cs" />
     <Compile Include="API\ObtenerResumenAbiertoController.cs" />
     <Compile Include="API\ObtenerResumenCerradoController.cs" />
     <Compile Include="API\ObtenerSaldoFinalADiciembrePorClienteController.cs" />
     <Compile Include="API\ObtenerSaldosPresentacionParaComposicionController.cs" />
+    <Compile Include="API\ObtenerSolicitudesDevolucionClientePorNumeroController.cs" />
     <Compile Include="API\ObtenerTiposDeComprobantesAMostrarController.cs" />
     <Compile Include="API\ObtenerTotalReservasDeVacunasPorClienteEntreFechasController.cs" />
     <Compile Include="API\ObtenerUltimos10ResumenesDePuntoDeVentaController.cs" />

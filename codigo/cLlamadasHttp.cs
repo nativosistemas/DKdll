@@ -173,5 +173,17 @@ namespace DKdll.codigo
         {
             return cLlamadasDLL.AgregarReclamoFacturadoNoEnviado(colSDC, LoginWeb);
         }
+        public static List<cLote> ObtenerNumerosLoteDeProductoDeFacturaProveedorLogLotesConCadena(string NombreProducto, string CadenaBusqueda, string LoginWeb)
+        {
+            return cLlamadasDLL.ObtenerNumerosLoteDeProductoDeFacturaProveedorLogLotesConCadena(NombreProducto,  CadenaBusqueda,  LoginWeb);
+        }
+        public static List<cDevolucionItemPrecarga> ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero(string NumeroReclamo, string LoginWeb)
+        {
+            return cLlamadasDLL.ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero( NumeroReclamo,  LoginWeb);
+        }
+        public static List<cDevolucionItemPrecarga> ObtenerSolicitudesDevolucionClientePorNumero(string NumeroSolicitud, string LoginWeb)
+        {
+            return cLlamadasDLL.ObtenerSolicitudesDevolucionClientePorNumero( NumeroSolicitud,  LoginWeb);
+        }
     }
 }

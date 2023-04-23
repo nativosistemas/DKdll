@@ -1537,5 +1537,87 @@ namespace DKdll.codigo
             //}            
             return resultado;
         }
+        public static List<cLote> ObtenerNumerosLoteDeProductoDeFacturaProveedorLogLotesConCadena(string NombreProducto, string CadenaBusqueda, string LoginWeb)
+        {
+
+            List<cLote> lista = null;         
+               // classTiempo tiempo = new classTiempo("ObtenerNumerosLoteDeProductoDeFacturaProveedorLogLotesConCadena");
+                try
+                {
+                    lista = new List<cLote>();
+                    dkInterfaceWeb.LoteCOL objResultado;
+                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                    objResultado = objServWeb.ObtenerNumerosLoteDeProductoDeFacturaProveedorLogLotesConCadena(NombreProducto, CadenaBusqueda, LoginWeb);
+                    if (objResultado != null)
+                        for (int i = 1; i <= objResultado.Count(); i++)
+                            lista.Add(dllFuncionesGenerales.ConvertToLote(objResultado[i]));
+                    else
+                        return null;
+                }
+                catch (Exception ex)
+                {
+                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NombreProducto, CadenaBusqueda, LoginWeb);
+                    return null;
+                }
+                //finally
+                //{
+                //    tiempo.Parar();
+                //}            
+            return lista;
+        }
+        public static List<cDevolucionItemPrecarga> ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero(string NumeroReclamo, string LoginWeb)
+        {
+            List<cDevolucionItemPrecarga> lista = null;
+               // classTiempo tiempo = new classTiempo("ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero");
+                try
+                {
+                    lista = new List<cDevolucionItemPrecarga>();
+                    dkInterfaceWeb.SolicitudDevClienteCOL objResultado;
+                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                    objResultado = objServWeb.ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero(NumeroReclamo, LoginWeb);
+                    if (objResultado != null)
+                        for (int i = 1; i <= objResultado.Count(); i++)
+                            lista.Add(dllFuncionesGenerales.ConvertToItemSolicitudDevCliente(objResultado[i]));
+                    else
+                        return null;
+                }
+                catch (Exception ex)
+                {
+                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NumeroReclamo, LoginWeb);
+                    return null;
+                }
+                //finally
+                //{
+                //    tiempo.Parar();
+                //}            
+            return lista;
+        }
+        public static List<cDevolucionItemPrecarga> ObtenerSolicitudesDevolucionClientePorNumero(string NumeroSolicitud, string LoginWeb)
+        {
+            List<cDevolucionItemPrecarga> lista = null;            
+                //classTiempo tiempo = new classTiempo("ObtenerSolicitudesDevolucionClientePorNumero");
+                try
+                {
+                    lista = new List<cDevolucionItemPrecarga>();
+                    dkInterfaceWeb.SolicitudDevClienteCOL objResultado;
+                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                    objResultado = objServWeb.ObtenerSolicitudesDevolucionClientePorNumero(NumeroSolicitud, LoginWeb);
+                    if (objResultado != null)
+                        for (int i = 1; i <= objResultado.Count(); i++)
+                            lista.Add(dllFuncionesGenerales.ConvertToItemSolicitudDevCliente(objResultado[i]));
+                    else
+                        return null;
+                }
+                catch (Exception ex)
+                {
+                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NumeroSolicitud, LoginWeb);
+                    return null;
+                }
+                //finally
+                //{
+                //    tiempo.Parar();
+                //}
+            return lista;
+        }
     }
 }
