@@ -16,6 +16,13 @@ namespace DKdll.API
             {
                 return BadRequest(ModelState);
             }
+            if (parameter.itemDevolucionPrecarga != null)
+            {
+                foreach (Dkbase.dll.cDevolucionItemPrecarga item in parameter.itemDevolucionPrecarga)
+                {
+                    item.dev_motivo = (DKbase.dll.dllMotivoDevolucion)item.dev_motivo_int;
+                }
+            }
             return Ok(codigo.cLlamadasHttp.AgregarSolicitudDevolucionCliente(parameter.itemDevolucionPrecarga, parameter.loginWeb));
         }
     }
