@@ -149,7 +149,7 @@ namespace DKdll.codigo
         {
             return cLlamadasDLL.ObtenerVencimientosResumenPorFecha(NumeroComprobante, FechaVencimiento);
         }
-        public static List<cDevolucionItemPrecarga> ObtenerReclamosFacturadoNoEnviadoPorCliente(string LoginWeb)
+        public static List<cDevolucionItemPrecarga_java> ObtenerReclamosFacturadoNoEnviadoPorCliente(string LoginWeb)
         {
             return cLlamadasDLL.ObtenerReclamosFacturadoNoEnviadoPorCliente(LoginWeb);
         }
@@ -165,11 +165,11 @@ namespace DKdll.codigo
         {
             return cLlamadasDLL.ObtenerFacturasPorUltimosNumeros(NumeroFactura, LoginWeb);
         }
-        public static string AgregarSolicitudDevolucionCliente(List<cDevolucionItemPrecarga> colSDC, string LoginWeb)
+        public static string AgregarSolicitudDevolucionCliente(List<cDevolucionItemPrecarga_java> colSDC, string LoginWeb)
         {
             return cLlamadasDLL.AgregarSolicitudDevolucionCliente(colSDC, LoginWeb);
         }
-        public static string AgregarReclamoFacturadoNoEnviado(List<cDevolucionItemPrecarga> colSDC, string LoginWeb)
+        public static string AgregarReclamoFacturadoNoEnviado(List<cDevolucionItemPrecarga_java> colSDC, string LoginWeb)
         {
             return cLlamadasDLL.AgregarReclamoFacturadoNoEnviado(colSDC, LoginWeb);
         }
@@ -177,13 +177,18 @@ namespace DKdll.codigo
         {
             return cLlamadasDLL.ObtenerNumerosLoteDeProductoDeFacturaProveedorLogLotesConCadena(NombreProducto,  CadenaBusqueda,  LoginWeb);
         }
-        public static List<cDevolucionItemPrecarga> ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero(string NumeroReclamo, string LoginWeb)
+        public static List<cDevolucionItemPrecarga_java> ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero(string NumeroReclamo, string LoginWeb)
         {
             return cLlamadasDLL.ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero( NumeroReclamo,  LoginWeb);
         }
-        public static List<cDevolucionItemPrecarga> ObtenerSolicitudesDevolucionClientePorNumero(string NumeroSolicitud, string LoginWeb)
+        public static List<cDevolucionItemPrecarga_java> ObtenerSolicitudesDevolucionClientePorNumero(string NumeroSolicitud, string LoginWeb)
         {
             return cLlamadasDLL.ObtenerSolicitudesDevolucionClientePorNumero( NumeroSolicitud,  LoginWeb);
         }
+        //public static List<cDevolucionItemPrecarga> ObtenerDevolucionesPorClientePorNumero(string pNumeroDevolucion, string pLoginWeb)
+        //{
+        //    return cLlamadasDLL.ObtenerDevolucionesPorClientePorNumero(pNumeroDevolucion, pLoginWeb);
+        //}
+        
     }
 }

@@ -855,6 +855,96 @@ namespace DKdll.codigo
             }
             return resultado;
         }
+        public static cDevolucionItemPrecarga_java ConvertToItemSolicitudDevCliente_java(dkInterfaceWeb.SolicitudDevCliente pObjSDC)
+        {
+            cDevolucionItemPrecarga resultado = null;
+            if (pObjSDC != null)
+            {
+                resultado = new cDevolucionItemPrecarga();
+                resultado.dev_numeroitem = pObjSDC.NumeroItem;
+                resultado.dev_numerocliente = pObjSDC.NumeroCliente;
+                resultado.dev_numerofactura = pObjSDC.NumeroFactura;
+                resultado.dev_numerosolicituddevolucion = pObjSDC.NumeroSolicitud;
+                resultado.dev_nombreproductodevolucion = pObjSDC.NombreProductoDevolucion;
+                resultado.dev_fecha = pObjSDC.Fecha;
+                DateTime dateValue;
+                resultado.dev_fecha = DateTime.TryParse(pObjSDC.Fecha.ToString(), out dateValue) ? (DateTime)pObjSDC.Fecha : DateTime.Now;
+                resultado.dev_fechaToString = resultado.dev_fecha != null ? ((DateTime)resultado.dev_fecha).ToShortDateString() : string.Empty;
+                resultado.dev_motivo = (int)pObjSDC.Motivo;
+                resultado.dev_numeroitemfactura = pObjSDC.NumeroItemFactura;
+                resultado.dev_nombreproductofactura = pObjSDC.NombreProductoFactura;
+                resultado.dev_cantidad = pObjSDC.Cantidad;
+                resultado.dev_numerolote = pObjSDC.NumeroLote;
+                resultado.dev_fechavencimientolote = pObjSDC.FechaVencimiento;
+                resultado.dev_fechavencimientolote = DateTime.TryParse(pObjSDC.FechaVencimiento.ToString(), out dateValue) ? (DateTime)pObjSDC.FechaVencimiento : DateTime.Now;
+                resultado.dev_fechavencimientoloteToString = resultado.dev_fechavencimientolote != null ? ((DateTime)resultado.dev_fechavencimientolote).ToShortDateString() : string.Empty;
+                resultado.dev_estado = pObjSDC.Estado;
+                resultado.dev_mensaje = pObjSDC.MensajeRechazo;
+                resultado.dev_cantidadrecibida = pObjSDC.CantidadRecibida;
+                resultado.dev_cantidadrechazada = pObjSDC.CantidadRechazada;
+                resultado.dev_idsucursal = pObjSDC.IDSucursal;
+                resultado.dev_numerosolicitudNC = pObjSDC.NumeroSolicitudNC;
+            }
+            return resultado;
+        }
+        public static dkInterfaceWeb.SolicitudDevCliente ConvertFromItemSolicitudDevCliente_java(cDevolucionItemPrecarga_java pObjSDC)
+        {
+            dkInterfaceWeb.SolicitudDevCliente resultado = null;
+            if (pObjSDC != null)
+            {
+                resultado = new dkInterfaceWeb.SolicitudDevCliente();
+                resultado.NumeroItem = pObjSDC.dev_numeroitem;
+                resultado.NumeroCliente = pObjSDC.dev_numerocliente;
+                resultado.NumeroFactura = pObjSDC.dev_numerofactura;
+                resultado.NumeroSolicitud = pObjSDC.dev_numerosolicituddevolucion;
+                resultado.NombreProductoDevolucion = pObjSDC.dev_nombreproductodevolucion;
+                resultado.Fecha = pObjSDC.dev_fecha;
+                DateTime dateValue;
+                resultado.Fecha = DateTime.TryParse(pObjSDC.dev_fecha.ToString(), out dateValue) ? (DateTime)pObjSDC.dev_fecha : DateTime.Now;
+
+                switch (pObjSDC.dev_motivo)
+                {
+                    case 1:
+                        resultado.Motivo = dkInterfaceWeb.MotivoDevolucion.BienFacturadoMalEnviado;
+                        break;
+                    case 2:
+                        resultado.Motivo = dkInterfaceWeb.MotivoDevolucion.ProductoMalEstado;
+                        break;
+                    case 3:
+                        resultado.Motivo = dkInterfaceWeb.MotivoDevolucion.FacturadoNoPedido;
+                        break;
+                    case 4:
+                        resultado.Motivo = dkInterfaceWeb.MotivoDevolucion.ProductoDeMasSinSerFacturado;
+                        break;
+                    case 5:
+                        resultado.Motivo = dkInterfaceWeb.MotivoDevolucion.VencimientoCorto;
+                        break;
+                    case 6:
+                        resultado.Motivo = dkInterfaceWeb.MotivoDevolucion.ProductoFallaFabricante;
+                        break;
+                    case 7:
+                        resultado.Motivo = dkInterfaceWeb.MotivoDevolucion.Vencido;
+                        break;
+                    case 8:
+                        resultado.Motivo = dkInterfaceWeb.MotivoDevolucion.PedidoPorError;
+                        break;
+                }
+                resultado.NumeroItemFactura = pObjSDC.dev_numeroitemfactura;
+                resultado.NombreProductoFactura = pObjSDC.dev_nombreproductofactura;
+                resultado.Cantidad = pObjSDC.dev_cantidad;
+                resultado.NumeroLote = pObjSDC.dev_numerolote;
+                resultado.FechaVencimiento = pObjSDC.dev_fechavencimientolote;
+                resultado.FechaVencimiento = Convert.ToDateTime(pObjSDC.dev_fechavencimientoloteToString);
+                //resultado.FechaVencimiento = DateTime.TryParse(pObjSDC.dev_fechavencimientolote.ToString(), out dateValue) ? (DateTime)pObjSDC.dev_fechavencimientolote : DateTime.Now;
+                resultado.Estado = pObjSDC.dev_estado;
+                resultado.MensajeRechazo = pObjSDC.dev_mensaje;
+                resultado.CantidadRecibida = pObjSDC.dev_cantidadrecibida;
+                resultado.CantidadRechazada = pObjSDC.dev_cantidadrechazada;
+                resultado.IDSucursal = pObjSDC.dev_idsucursal;
+                resultado.NumeroSolicitudNC = pObjSDC.dev_numerosolicitudNC;
+            }
+            return resultado;
+        }
         public static dkInterfaceWeb.SolicitudDevCliente ConvertFromItemSolicitudDevCliente(cDevolucionItemPrecarga pObjSDC)
         {
             dkInterfaceWeb.SolicitudDevCliente resultado = null;

@@ -1389,19 +1389,19 @@ namespace DKdll.codigo
             }
             return resultado;
         }
-        public static List<cDevolucionItemPrecarga> ObtenerReclamosFacturadoNoEnviadoPorCliente(string LoginWeb)
+        public static List<cDevolucionItemPrecarga_java> ObtenerReclamosFacturadoNoEnviadoPorCliente(string LoginWeb)
         {
-            List<cDevolucionItemPrecarga> lista = null;
+            List<cDevolucionItemPrecarga_java> lista = null;
             // classTiempo tiempo = new classTiempo("ObtenerReclamosFacturadoNoEnviadoPorCliente");
             try
             {
-                lista = new List<cDevolucionItemPrecarga>();
+                lista = new List<cDevolucionItemPrecarga_java>();
                 dkInterfaceWeb.SolicitudDevClienteCOL objResultado;
                 dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
                 objResultado = objServWeb.ObtenerReclamosFacturadoNoEnviadoPorCliente(LoginWeb);
                 if (objResultado != null)
                     for (int i = 1; i <= objResultado.Count(); i++)
-                        lista.Add(dllFuncionesGenerales.ConvertToItemSolicitudDevCliente(objResultado[i]));
+                        lista.Add(dllFuncionesGenerales.ConvertToItemSolicitudDevCliente_java(objResultado[i]));
                 else
                     return null;
             }
@@ -1481,7 +1481,7 @@ namespace DKdll.codigo
             //}
             return lista;
         }
-        public static string AgregarSolicitudDevolucionCliente(List<cDevolucionItemPrecarga> colSDC, string LoginWeb)
+        public static string AgregarSolicitudDevolucionCliente(List<cDevolucionItemPrecarga_java> colSDC, string LoginWeb)
         {
             string resultado = null;
             //classTiempo tiempo = new classTiempo("AgregarSolicitudDevolucionCliente");
@@ -1491,7 +1491,7 @@ namespace DKdll.codigo
                 colInput = new dkInterfaceWeb.SolicitudDevClienteCOL();
                 if (colSDC != null)
                     for (int i = 0; i < colSDC.Count(); i++)
-                        colInput.Add(dllFuncionesGenerales.ConvertFromItemSolicitudDevCliente(colSDC[i]));
+                        colInput.Add(dllFuncionesGenerales.ConvertFromItemSolicitudDevCliente_java(colSDC[i]));
                 else
                     return null;
 
@@ -1509,7 +1509,7 @@ namespace DKdll.codigo
             //}            
             return resultado;
         }
-        public static string AgregarReclamoFacturadoNoEnviado(List<cDevolucionItemPrecarga> colSDC, string LoginWeb)
+        public static string AgregarReclamoFacturadoNoEnviado(List<cDevolucionItemPrecarga_java> colSDC, string LoginWeb)
         {
             string resultado = null;
             //classTiempo tiempo = new classTiempo("AgregarReclamoFacturadoNoEnviado");
@@ -1519,7 +1519,7 @@ namespace DKdll.codigo
                 colInput = new dkInterfaceWeb.SolicitudDevClienteCOL();
                 if (colSDC != null)
                     for (int i = 0; i < colSDC.Count(); i++)
-                        colInput.Add(dllFuncionesGenerales.ConvertFromItemSolicitudDevCliente(colSDC[i]));
+                        colInput.Add(dllFuncionesGenerales.ConvertFromItemSolicitudDevCliente_java(colSDC[i]));
                 else
                     return null;
 
@@ -1565,7 +1565,7 @@ namespace DKdll.codigo
                 //}            
             return lista;
         }
-        public static List<cDevolucionItemPrecarga> ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero(string NumeroReclamo, string LoginWeb)
+        public static List<cDevolucionItemPrecarga_java> ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero(string NumeroReclamo, string LoginWeb)
         {
             List<cDevolucionItemPrecarga> lista = null;
                // classTiempo tiempo = new classTiempo("ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero");
@@ -1577,7 +1577,7 @@ namespace DKdll.codigo
                     objResultado = objServWeb.ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero(NumeroReclamo, LoginWeb);
                     if (objResultado != null)
                         for (int i = 1; i <= objResultado.Count(); i++)
-                            lista.Add(dllFuncionesGenerales.ConvertToItemSolicitudDevCliente(objResultado[i]));
+                            lista.Add(dllFuncionesGenerales.ConvertToItemSolicitudDevCliente_java(objResultado[i]));
                     else
                         return null;
                 }
@@ -1592,19 +1592,19 @@ namespace DKdll.codigo
                 //}            
             return lista;
         }
-        public static List<cDevolucionItemPrecarga> ObtenerSolicitudesDevolucionClientePorNumero(string NumeroSolicitud, string LoginWeb)
+        public static List<cDevolucionItemPrecarga_java> ObtenerSolicitudesDevolucionClientePorNumero(string NumeroSolicitud, string LoginWeb)
         {
-            List<cDevolucionItemPrecarga> lista = null;            
+            List<cDevolucionItemPrecarga_java> lista = null;            
                 //classTiempo tiempo = new classTiempo("ObtenerSolicitudesDevolucionClientePorNumero");
                 try
                 {
-                    lista = new List<cDevolucionItemPrecarga>();
+                    lista = new List<cDevolucionItemPrecarga_java>();
                     dkInterfaceWeb.SolicitudDevClienteCOL objResultado;
                     dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
                     objResultado = objServWeb.ObtenerSolicitudesDevolucionClientePorNumero(NumeroSolicitud, LoginWeb);
                     if (objResultado != null)
                         for (int i = 1; i <= objResultado.Count(); i++)
-                            lista.Add(dllFuncionesGenerales.ConvertToItemSolicitudDevCliente(objResultado[i]));
+                            lista.Add(dllFuncionesGenerales.ConvertToItemSolicitudDevCliente_java(objResultado[i]));
                     else
                         return null;
                 }
