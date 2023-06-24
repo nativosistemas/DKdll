@@ -1567,11 +1567,11 @@ namespace DKdll.codigo
         }
         public static List<cDevolucionItemPrecarga_java> ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero(string NumeroReclamo, string LoginWeb)
         {
-            List<cDevolucionItemPrecarga> lista = null;
+            List<cDevolucionItemPrecarga_java> lista = null;
                // classTiempo tiempo = new classTiempo("ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero");
                 try
                 {
-                    lista = new List<cDevolucionItemPrecarga>();
+                    lista = new List<cDevolucionItemPrecarga_java>();
                     dkInterfaceWeb.SolicitudDevClienteCOL objResultado;
                     dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
                     objResultado = objServWeb.ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero(NumeroReclamo, LoginWeb);

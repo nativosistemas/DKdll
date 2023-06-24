@@ -811,7 +811,7 @@ namespace DKdll.codigo
                 DateTime dateValue;
                 resultado.dev_fecha = DateTime.TryParse(pObjSDC.Fecha.ToString(), out dateValue) ? (DateTime)pObjSDC.Fecha : DateTime.Now;
                 resultado.dev_fechaToString = resultado.dev_fecha != null ? ((DateTime)resultado.dev_fecha).ToShortDateString() : string.Empty;
-                resultado.dev_motivo_int = (int)pObjSDC.Motivo;
+                //resultado.dev_motivo_int = (int)pObjSDC.Motivo;
                 switch (pObjSDC.Motivo)
                 {
                     case dkInterfaceWeb.MotivoDevolucion.BienFacturadoMalEnviado:
@@ -857,10 +857,10 @@ namespace DKdll.codigo
         }
         public static cDevolucionItemPrecarga_java ConvertToItemSolicitudDevCliente_java(dkInterfaceWeb.SolicitudDevCliente pObjSDC)
         {
-            cDevolucionItemPrecarga resultado = null;
+            cDevolucionItemPrecarga_java resultado = null;
             if (pObjSDC != null)
             {
-                resultado = new cDevolucionItemPrecarga();
+                resultado = new cDevolucionItemPrecarga_java();
                 resultado.dev_numeroitem = pObjSDC.NumeroItem;
                 resultado.dev_numerocliente = pObjSDC.NumeroCliente;
                 resultado.dev_numerofactura = pObjSDC.NumeroFactura;
