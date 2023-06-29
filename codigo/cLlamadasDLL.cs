@@ -1619,5 +1619,30 @@ namespace DKdll.codigo
                 //}
             return lista;
         }
+        public static List<cDevolucionItemPrecarga_java> ObtenerSolicitudesDevolucionCliente(string pLoginWeb)
+        {
+            List<cDevolucionItemPrecarga_java> lista = null;
+                try
+                {
+
+                    lista = new List<cDevolucionItemPrecarga_java>();
+                    dkInterfaceWeb.SolicitudDevClienteCOL objResultado;
+                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                    objResultado = objServWeb.ObtenerSolicitudesDevolucionCliente(LoginWeb);
+                    if (objResultado != null)
+                        for (int i = 1; i <= objResultado.Count(); i++)
+                            lista.Add(dllFuncionesGenerales.ConvertToItemSolicitudDevCliente_java(objResultado[i]));
+                    else
+                        return null;
+                }
+                catch (Exception ex)
+                {
+                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pLoginWeb);
+                    return null;
+                }
+
+            
+            return lista;
+        }
     }
 }

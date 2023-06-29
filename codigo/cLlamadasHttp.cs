@@ -185,10 +185,10 @@ namespace DKdll.codigo
         {
             return cLlamadasDLL.ObtenerSolicitudesDevolucionClientePorNumero( NumeroSolicitud,  LoginWeb);
         }
-        //public static List<cDevolucionItemPrecarga> ObtenerDevolucionesPorClientePorNumero(string pNumeroDevolucion, string pLoginWeb)
-        //{
-        //    return cLlamadasDLL.ObtenerDevolucionesPorClientePorNumero(pNumeroDevolucion, pLoginWeb);
-        //}
-        
+        public static List<cDevolucionItemPrecarga_java> ObtenerSolicitudesDevolucionCliente(string pLoginWeb)
+        {
+            return cLlamadasDLL.ObtenerSolicitudesDevolucionCliente(pLoginWeb);
+        }
+
     }
 }
