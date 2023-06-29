@@ -153,6 +153,7 @@
     <Compile Include="API\ObtenerResumenCerradoController.cs" />
     <Compile Include="API\ObtenerSaldoFinalADiciembrePorClienteController.cs" />
     <Compile Include="API\ObtenerSaldosPresentacionParaComposicionController.cs" />
+    <Compile Include="API\ObtenerSolicitudesDevolucionClienteController.cs" />
     <Compile Include="API\ObtenerSolicitudesDevolucionClientePorNumeroController.cs" />
     <Compile Include="API\ObtenerTiposDeComprobantesAMostrarController.cs" />
     <Compile Include="API\ObtenerTotalReservasDeVacunasPorClienteEntreFechasController.cs" />

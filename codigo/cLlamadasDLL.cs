@@ -1628,7 +1628,7 @@ namespace DKdll.codigo
                     lista = new List<cDevolucionItemPrecarga_java>();
                     dkInterfaceWeb.SolicitudDevClienteCOL objResultado;
                     dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
-                    objResultado = objServWeb.ObtenerSolicitudesDevolucionCliente(LoginWeb);
+                    objResultado = objServWeb.ObtenerSolicitudesDevolucionCliente(pLoginWeb);
                     if (objResultado != null)
                         for (int i = 1; i <= objResultado.Count(); i++)
                             lista.Add(dllFuncionesGenerales.ConvertToItemSolicitudDevCliente_java(objResultado[i]));
