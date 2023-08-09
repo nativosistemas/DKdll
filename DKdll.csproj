@@ -134,6 +134,7 @@
     <Compile Include="API\ObtenerCreditoDisponibleTotalController.cs" />
     <Compile Include="API\ObtenerFacturaController.cs" />
     <Compile Include="API\ObtenerFacturasPorUltimosNumerosController.cs" />
+    <Compile Include="API\ObtenerItemsDePedidoPorNumeroDeFacturaController.cs" />
     <Compile Include="API\ObtenerMovimientosDeCuentaCorrienteController.cs" />
     <Compile Include="API\ObtenerMovimientosDeFichaCtaCteController.cs" />
     <Compile Include="API\ObtenerNotaDeCreditoController.cs" />

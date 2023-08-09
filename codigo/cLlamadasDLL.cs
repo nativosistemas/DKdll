@@ -1644,5 +1644,30 @@ namespace DKdll.codigo
             
             return lista;
         }
+        public static List<cPedidoItem> ObtenerItemsDePedidoPorNumeroDeFactura(string pNumeroFactura, string pLoginWeb)
+        {
+            List<cPedidoItem> lista = null;
+            try
+            {
+
+                lista = new List<cPedidoItem>();
+                dkInterfaceWeb.PedidoItemCOL objResultado;
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                objResultado = objServWeb.ObtenerItemsDePedidoPorNumeroDeFactura(pNumeroFactura, pLoginWeb);
+                if (objResultado != null)
+                    for (int i = 1; i <= objResultado.Count(); i++)
+                        lista.Add(dllFuncionesGenerales.ToConvertPedidoItem(objResultado[i]));
+                else
+                    return null;
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pNumeroFactura, pLoginWeb);
+                return null;
+            }
+
+
+            return lista;
+        }
     }
 }

@@ -189,6 +189,9 @@ namespace DKdll.codigo
         {
             return cLlamadasDLL.ObtenerSolicitudesDevolucionCliente(pLoginWeb);
         }
-
+        public static List<cPedidoItem> ObtenerItemsDePedidoPorNumeroDeFactura(string pNumeroFactura, string pLoginWeb)
+        {
+            return cLlamadasDLL.ObtenerItemsDePedidoPorNumeroDeFactura(pNumeroFactura, pLoginWeb);
+        }
     }
 }

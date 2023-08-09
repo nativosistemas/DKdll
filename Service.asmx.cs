@@ -1990,6 +1990,11 @@ namespace DKdll
             }
             return resultado;
         }
-
+        //[WebMethod]
+        //public string ObtenerItemsDePedidoPorNumeroDeFactura_Prueba()
+        //{
+        //    List<cPedidoItem> dddd = cLlamadasDLL.ObtenerItemsDePedidoPorNumeroDeFactura("A001312926055", "romanello");
+        //    return dddd.Count.ToString();
+        //}
     }
 }
