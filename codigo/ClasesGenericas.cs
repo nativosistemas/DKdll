@@ -1073,5 +1073,31 @@ namespace DKdll.codigo
             }
             return result;
         }
+        public static cPedidoItem ToConvertPedidoItem(dkInterfaceWeb.PedidoItem pValue)
+        {
+            cPedidoItem result = null;
+            if (pValue != null)
+            {
+                cPedidoItem o = new cPedidoItem();
+                o.NombreObjetoComercial = pValue.NombreObjetoComercial;
+                o.Cantidad = pValue.Cantidad;
+                o.Caracteristica = pValue.Caracteristica == null ? "" : pValue.Caracteristica.ToString();
+                o.Faltas = pValue.Faltas;
+                //DateTime dateValue;
+                //o.FechaIngreso = DateTime.TryParse(pValue.FechaIngreso.ToString(), out dateValue) ? (DateTime)pValue.FechaIngreso : (DateTime?)null;
+                o.FechaIngreso = pValue.FechaIngreso.ToString() != string.Empty ? (DateTime?)(pValue.FechaIngreso) : null;
+                o.FechaIngresoToString = o.FechaIngreso != null ? o.FechaIngreso.ToString() : string.Empty;
+                //o.PrecioPublico = pValue.PrecioPublico == null ? null : Convert.ToDecimal(pValue.PrecioPublico);
+                o.PrecioPublico = pValue.PrecioPublico == null ? string.Empty : Convert.ToString(pValue.PrecioPublico);
+                //o.PrecioUnitario = pValue.PrecioUnitario == null ? null : Convert.ToDecimal(pValue.PrecioUnitario);
+                o.PrecioUnitario = pValue.PrecioUnitario == null ? string.Empty : Convert.ToString(pValue.PrecioUnitario);
+                //o.Importe = pValue.Importe == null ? null : Convert.ToDecimal(pValue.Importe);
+                o.Importe = pValue.Importe == null ? string.Empty : Convert.ToString(pValue.Importe);
+
+                result = o;
+            }
+            return result;
+        }
     }
+}
 }
