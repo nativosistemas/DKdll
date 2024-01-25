@@ -128,6 +128,7 @@
     <Compile Include="API\ObtenerChequesEnCarteraController.cs" />
     <Compile Include="API\ObtenerComprobantesAImprimirEnBaseAResumenController.cs" />
     <Compile Include="API\ObtenerComprobantesDiscriminadosDePuntoDeVentaEntreFechasController.cs" />
+    <Compile Include="API\ObtenerComprobantesEntreFechasController.cs" />
     <Compile Include="API\ObtenerComprobantesObrasSocialesDePuntoDeVentaEntreFechasController.cs" />
     <Compile Include="API\ObtenerCreditoDisponibleController.cs" />
     <Compile Include="API\ObtenerCreditoDisponibleSemanalController.cs" />

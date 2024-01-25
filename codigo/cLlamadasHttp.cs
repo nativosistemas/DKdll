@@ -159,7 +159,7 @@ namespace DKdll.codigo
         }
         public static bool EsFacturaConDevolucionesEnProceso(string NumeroFactura, string LoginWeb)
         {
-            return cLlamadasDLL.EsFacturaConDevolucionesEnProceso( NumeroFactura, LoginWeb);
+            return cLlamadasDLL.EsFacturaConDevolucionesEnProceso(NumeroFactura, LoginWeb);
         }
         public static List<cFactura> ObtenerFacturasPorUltimosNumeros(string NumeroFactura, string LoginWeb)
         {
@@ -175,15 +175,15 @@ namespace DKdll.codigo
         }
         public static List<cLote> ObtenerNumerosLoteDeProductoDeFacturaProveedorLogLotesConCadena(string NombreProducto, string CadenaBusqueda, string LoginWeb)
         {
-            return cLlamadasDLL.ObtenerNumerosLoteDeProductoDeFacturaProveedorLogLotesConCadena(NombreProducto,  CadenaBusqueda,  LoginWeb);
+            return cLlamadasDLL.ObtenerNumerosLoteDeProductoDeFacturaProveedorLogLotesConCadena(NombreProducto, CadenaBusqueda, LoginWeb);
         }
         public static List<cDevolucionItemPrecarga_java> ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero(string NumeroReclamo, string LoginWeb)
         {
-            return cLlamadasDLL.ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero( NumeroReclamo,  LoginWeb);
+            return cLlamadasDLL.ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero(NumeroReclamo, LoginWeb);
         }
         public static List<cDevolucionItemPrecarga_java> ObtenerSolicitudesDevolucionClientePorNumero(string NumeroSolicitud, string LoginWeb)
         {
-            return cLlamadasDLL.ObtenerSolicitudesDevolucionClientePorNumero( NumeroSolicitud,  LoginWeb);
+            return cLlamadasDLL.ObtenerSolicitudesDevolucionClientePorNumero(NumeroSolicitud, LoginWeb);
         }
         public static List<cDevolucionItemPrecarga_java> ObtenerSolicitudesDevolucionCliente(string pLoginWeb)
         {
@@ -192,6 +192,10 @@ namespace DKdll.codigo
         public static List<cPedidoItem> ObtenerItemsDePedidoPorNumeroDeFactura(string pNumeroFactura, string pLoginWeb)
         {
             return cLlamadasDLL.ObtenerItemsDePedidoPorNumeroDeFactura(pNumeroFactura, pLoginWeb);
+        }
+        public static List<cComprobanteDiscriminado> ObtenerComprobantesEntreFechas(string pTipoComprobante, DateTime pDesde, DateTime pHasta, string pLoginWeb)
+        {
+            return cLlamadasDLL.ObtenerComprobantesEntreFechas(pTipoComprobante, pDesde, pHasta, pLoginWeb);
         }
     }
 }

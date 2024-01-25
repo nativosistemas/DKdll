@@ -1540,108 +1540,108 @@ namespace DKdll.codigo
         public static List<cLote> ObtenerNumerosLoteDeProductoDeFacturaProveedorLogLotesConCadena(string NombreProducto, string CadenaBusqueda, string LoginWeb)
         {
 
-            List<cLote> lista = null;         
-               // classTiempo tiempo = new classTiempo("ObtenerNumerosLoteDeProductoDeFacturaProveedorLogLotesConCadena");
-                try
-                {
-                    lista = new List<cLote>();
-                    dkInterfaceWeb.LoteCOL objResultado;
-                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
-                    objResultado = objServWeb.ObtenerNumerosLoteDeProductoDeFacturaProveedorLogLotesConCadena(NombreProducto, CadenaBusqueda, LoginWeb);
-                    if (objResultado != null)
-                        for (int i = 1; i <= objResultado.Count(); i++)
-                            lista.Add(dllFuncionesGenerales.ConvertToLote(objResultado[i]));
-                    else
-                        return null;
-                }
-                catch (Exception ex)
-                {
-                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NombreProducto, CadenaBusqueda, LoginWeb);
+            List<cLote> lista = null;
+            // classTiempo tiempo = new classTiempo("ObtenerNumerosLoteDeProductoDeFacturaProveedorLogLotesConCadena");
+            try
+            {
+                lista = new List<cLote>();
+                dkInterfaceWeb.LoteCOL objResultado;
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                objResultado = objServWeb.ObtenerNumerosLoteDeProductoDeFacturaProveedorLogLotesConCadena(NombreProducto, CadenaBusqueda, LoginWeb);
+                if (objResultado != null)
+                    for (int i = 1; i <= objResultado.Count(); i++)
+                        lista.Add(dllFuncionesGenerales.ConvertToLote(objResultado[i]));
+                else
                     return null;
-                }
-                //finally
-                //{
-                //    tiempo.Parar();
-                //}            
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NombreProducto, CadenaBusqueda, LoginWeb);
+                return null;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}            
             return lista;
         }
         public static List<cDevolucionItemPrecarga_java> ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero(string NumeroReclamo, string LoginWeb)
         {
             List<cDevolucionItemPrecarga_java> lista = null;
-               // classTiempo tiempo = new classTiempo("ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero");
-                try
-                {
-                    lista = new List<cDevolucionItemPrecarga_java>();
-                    dkInterfaceWeb.SolicitudDevClienteCOL objResultado;
-                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
-                    objResultado = objServWeb.ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero(NumeroReclamo, LoginWeb);
-                    if (objResultado != null)
-                        for (int i = 1; i <= objResultado.Count(); i++)
-                            lista.Add(dllFuncionesGenerales.ConvertToItemSolicitudDevCliente_java(objResultado[i]));
-                    else
-                        return null;
-                }
-                catch (Exception ex)
-                {
-                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NumeroReclamo, LoginWeb);
+            // classTiempo tiempo = new classTiempo("ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero");
+            try
+            {
+                lista = new List<cDevolucionItemPrecarga_java>();
+                dkInterfaceWeb.SolicitudDevClienteCOL objResultado;
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                objResultado = objServWeb.ObtenerReclamosFacturadoNoEnviadoPorClientePorNumero(NumeroReclamo, LoginWeb);
+                if (objResultado != null)
+                    for (int i = 1; i <= objResultado.Count(); i++)
+                        lista.Add(dllFuncionesGenerales.ConvertToItemSolicitudDevCliente_java(objResultado[i]));
+                else
                     return null;
-                }
-                //finally
-                //{
-                //    tiempo.Parar();
-                //}            
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NumeroReclamo, LoginWeb);
+                return null;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}            
             return lista;
         }
         public static List<cDevolucionItemPrecarga_java> ObtenerSolicitudesDevolucionClientePorNumero(string NumeroSolicitud, string LoginWeb)
         {
-            List<cDevolucionItemPrecarga_java> lista = null;            
-                //classTiempo tiempo = new classTiempo("ObtenerSolicitudesDevolucionClientePorNumero");
-                try
-                {
-                    lista = new List<cDevolucionItemPrecarga_java>();
-                    dkInterfaceWeb.SolicitudDevClienteCOL objResultado;
-                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
-                    objResultado = objServWeb.ObtenerSolicitudesDevolucionClientePorNumero(NumeroSolicitud, LoginWeb);
-                    if (objResultado != null)
-                        for (int i = 1; i <= objResultado.Count(); i++)
-                            lista.Add(dllFuncionesGenerales.ConvertToItemSolicitudDevCliente_java(objResultado[i]));
-                    else
-                        return null;
-                }
-                catch (Exception ex)
-                {
-                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NumeroSolicitud, LoginWeb);
+            List<cDevolucionItemPrecarga_java> lista = null;
+            //classTiempo tiempo = new classTiempo("ObtenerSolicitudesDevolucionClientePorNumero");
+            try
+            {
+                lista = new List<cDevolucionItemPrecarga_java>();
+                dkInterfaceWeb.SolicitudDevClienteCOL objResultado;
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                objResultado = objServWeb.ObtenerSolicitudesDevolucionClientePorNumero(NumeroSolicitud, LoginWeb);
+                if (objResultado != null)
+                    for (int i = 1; i <= objResultado.Count(); i++)
+                        lista.Add(dllFuncionesGenerales.ConvertToItemSolicitudDevCliente_java(objResultado[i]));
+                else
                     return null;
-                }
-                //finally
-                //{
-                //    tiempo.Parar();
-                //}
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, NumeroSolicitud, LoginWeb);
+                return null;
+            }
+            //finally
+            //{
+            //    tiempo.Parar();
+            //}
             return lista;
         }
         public static List<cDevolucionItemPrecarga_java> ObtenerSolicitudesDevolucionCliente(string pLoginWeb)
         {
             List<cDevolucionItemPrecarga_java> lista = null;
-                try
-                {
+            try
+            {
 
-                    lista = new List<cDevolucionItemPrecarga_java>();
-                    dkInterfaceWeb.SolicitudDevClienteCOL objResultado;
-                    dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
-                    objResultado = objServWeb.ObtenerSolicitudesDevolucionCliente(pLoginWeb);
-                    if (objResultado != null)
-                        for (int i = 1; i <= objResultado.Count(); i++)
-                            lista.Add(dllFuncionesGenerales.ConvertToItemSolicitudDevCliente_java(objResultado[i]));
-                    else
-                        return null;
-                }
-                catch (Exception ex)
-                {
-                    DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pLoginWeb);
+                lista = new List<cDevolucionItemPrecarga_java>();
+                dkInterfaceWeb.SolicitudDevClienteCOL objResultado;
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                objResultado = objServWeb.ObtenerSolicitudesDevolucionCliente(pLoginWeb);
+                if (objResultado != null)
+                    for (int i = 1; i <= objResultado.Count(); i++)
+                        lista.Add(dllFuncionesGenerales.ConvertToItemSolicitudDevCliente_java(objResultado[i]));
+                else
                     return null;
-                }
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pLoginWeb);
+                return null;
+            }
 
-            
+
             return lista;
         }
         public static List<cPedidoItem> ObtenerItemsDePedidoPorNumeroDeFactura(string pNumeroFactura, string pLoginWeb)
@@ -1649,7 +1649,6 @@ namespace DKdll.codigo
             List<cPedidoItem> lista = null;
             try
             {
-
                 lista = new List<cPedidoItem>();
                 dkInterfaceWeb.PedidoItemCOL objResultado;
                 dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
@@ -1668,6 +1667,48 @@ namespace DKdll.codigo
 
 
             return lista;
+        }
+        public static List<cComprobanteDiscriminado> ObtenerComprobantesEntreFechas(string pTipoComprobante, DateTime pDesde, DateTime pHasta, string pLoginWeb)
+        {
+            List<cComprobanteDiscriminado> resultado = null;
+            try
+            {
+                dkInterfaceWeb.ServiciosWEB objServWeb = new dkInterfaceWeb.ServiciosWEB();
+                dkInterfaceWeb.ComprobDiscriminadoCOL objComprobantes = objServWeb.ObtenerComprobantesDePuntoDeVentaEntreFechas(pLoginWeb, pDesde, pHasta, pTipoComprobante);
+                if (objComprobantes != null)
+                {
+                    resultado = new List<cComprobanteDiscriminado>();
+                    if (objComprobantes.Count() > 0)
+                    {
+
+                        for (int i = 1; i <= objComprobantes.Count(); i++)
+                        {
+                            cComprobanteDiscriminado obj = new cComprobanteDiscriminado();
+                            dkInterfaceWeb.ComprobanteDiscriminado objItem = objComprobantes.get_Item(i);
+                            dkInterfaceWeb.ComprobanteDiscriminado r = new dkInterfaceWeb.ComprobanteDiscriminado();
+                            obj.Comprobante = objItem.Comprobante;
+                            obj.Destinatario = objItem.Destinatario;
+                            obj.DetallePercepciones = objItem.DetallePercepciones != null ? objItem.DetallePercepciones.ToString() : "";
+                            obj.Fecha = objItem.Fecha;
+                            obj.FechaToString = objItem.Fecha != null ? objItem.Fecha.ToShortDateString() : "";
+                            obj.MontoExento = objItem.MontoExento;
+                            obj.MontoGravado = objItem.MontoGravado;
+                            obj.MontoIvaInscripto = objItem.MontoIvaInscripto;
+                            obj.MontoIvaNoInscripto = objItem.MontoIvaNoInscripto;
+                            obj.MontoPercepcionDGR = objItem.MontoPercepcionesDGR;
+                            obj.MontoTotal = objItem.MontoTotal;
+                            obj.NumeroComprobante = objItem.NumeroComprobante;
+                            resultado.Add(obj);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                DKbase.generales.Log.LogError(MethodBase.GetCurrentMethod(), ex, DateTime.Now, pTipoComprobante, pDesde, pHasta, pLoginWeb);
+                return null;
+            }
+            return resultado;
         }
     }
 }
