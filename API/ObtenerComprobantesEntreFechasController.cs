@@ -9,5 +9,14 @@ namespace DKdll.API
 {
     public class ObtenerComprobantesEntreFechasController : ApiController
     {
+        [HttpPost]
+        public async System.Threading.Tasks.Task<IHttpActionResult> Create([FromBody] DKbase.Models.DocumentoRequest parameter)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+            return Ok(codigo.cLlamadasHttp.ObtenerComprobantesEntreFechas(parameter.documentoTipo, parameter.fechaDesde, parameter.fechaHasta, parameter.loginWeb));
+        }
     }
 }
